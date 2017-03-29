@@ -9,4 +9,4 @@ function startNewGame() {
   document.getElementById('scoreText').style.display = 'inline-block';
 }
 
-window.onload = () => startNewGame(true);
+window.onload = () => startNewGame();
