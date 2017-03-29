@@ -1,0 +1,72 @@
+@font-face {
+  /*font-family: myFont;*/
+  /*src: url(.woff) format('woff'),*/
+        /*url(.svg) format('svg'),*/
+        /*url(.eot) format('eot');*/
+}
+
+body {
+  /*font-family: myFont;*/
+  background-color: DarkOliveGreen;
+  color: OrangeRed;
+}
+
+h1 {
+  text-align: center;
+  font-size: 4em;
+}
+
+.game {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.gameInfo {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+}
+
+#lives {
+  position: absolute;
+  right: 0;
+  display: none;
+}
+
+.life {
+  display: inline-block;
+  background-color: lightgray;
+  width: 50px;
+  height: 15px;
+}
+
+#scoreText {
+  display: none;
+}
+
+#highScores {
+  display: none;
+}
+
+#credits {
+  display: none;
+}
+
+#credits p {
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+}
+
+#scores {
+  font-size: 2em;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  font-size: 3em;
+}

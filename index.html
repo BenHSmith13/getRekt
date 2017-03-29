@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Break Out</title>
+  <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+  <script src="scripts/utils.js"></script>
+  <script src="scripts/canvas.js"></script>
+  <script src="scripts/game_object.js"></script>
+  <script src="scripts/game_objects.js"></script>
+  <script src="scripts/state.js"></script>
+  <script src="scripts/menu.js"></script>
+
+  <script src="scripts/input.js"></script>
+  <script src="scripts/keymap.js"></script>
+
+  <script src="scripts/game_loop.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+</head>
+<body>
+
+<h1>Get Rekt You Alien Muthers</h1>
+
+<div class="gameInfo">
+  <div id="scoreText">
+    Score: <span id="score">0</span>
+  </div>
+  <div id="lives">
+    <div id="life03" class="life">Life</div>
+    <div id="life02" class="life">Life</div>
+    <div id="life01" class="life">Life</div>
+  </div>
+</div>
+
+<canvas id="canvas" class="game"></canvas>
+
+<div class="gameInfo">
+  <div id="highScores">
+    <h2>High Scores</h2>
+    <div id="scores"></div>
+  </div>
+  <div id="credits">
+    <h2>Credits</h2>
+    <p>Ben Call</p>
+    <p>Ben Smith</p>
+  </div>
+</div>
+
+
+<script src="scripts/ui_methods.js"></script>
+</body>
+</html>
