@@ -7,6 +7,7 @@ class Menu {
       newGame: 'New Game',
       highScores: 'High Scores',
       credits: 'Credits',
+      reconfigure: 'Reconfigure',
     };
     this.scoresVisible = false;
     this.creditsVisible = false;
@@ -48,6 +49,8 @@ class Menu {
       case this.items.highScores:
         return this.items.newGame;
       case this.items.newGame:
+        return this.items.reconfigure;
+      case this.items.reconfigure:
         return this.items.credits;
       default:
         return '';
@@ -63,6 +66,8 @@ class Menu {
       case this.items.highScores:
         return this.items.credits;
       case this.items.credits:
+        return this.items.reconfigure;
+      case this.items.reconfigure:
         return this.items.newGame;
       default:
         return '';
@@ -116,6 +121,10 @@ class Menu {
     this.clearScoreDisplay();
   }
 
+  reconfigControls() {
+    console.log('Will set up new controls page here.')
+  }
+
   select() {
     switch (this.currentItem) {
       case this.items.newGame:
@@ -129,6 +138,9 @@ class Menu {
         break;
       case this.items.credits:
         this.showCredits();
+        break;
+      case this.items.reconfigure:
+        this.reconfigControls();
         break;
       default:
         break;

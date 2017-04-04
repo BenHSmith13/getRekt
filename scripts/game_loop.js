@@ -13,12 +13,12 @@ class GameLoop {
     this.menu = null;
     this.keys = null;
     this.objects = null;
+    this.character = null;
     this.score = 0;
   }
 
   startGame(firstTime) {
     this.initTime = performance.now();
-
     this.canvas = new Canvas(this.height, this.width);
     this.canvas.create();
 
@@ -31,7 +31,7 @@ class GameLoop {
     this.keys = input.keysdown;
 
     this.objects = new GameObjects(this.height, this.width);
-
+    this.character = new Character();
     this.gameLoop()
   }
 
@@ -68,6 +68,8 @@ class GameLoop {
     this.canvas.drawPlatforms(this.objects.platformPool);
     this.canvas.drawRect(this.objects.player);
 
+    // this.canvas.drawBox(this.character);
+    this.canvas.drawParticles(null);
     if (this.menu.isActive) {
       this.canvas.drawMenu(this.menu);
     } else if(this.state.lives <= 0) {
@@ -80,6 +82,7 @@ class GameLoop {
   }
 
   update(deltaTime) {
+
     if (this.menu.isActive) {
     //  Do nothing, handled by menu
     } else if (this.state.countDown > 0 && !_.isNaN(deltaTime)) {
@@ -88,6 +91,9 @@ class GameLoop {
       const { platformPool } = this.objects;
       // this.state.updateParticles(null, deltaTime);
       this.state.updatePlatforms(platformPool, deltaTime);
+      if(this.keys[keyMap.space] && !this.character.jumping ) {
+      }
+      this.state.updateParticles(null, deltaTime);
     }
   }
 
@@ -95,7 +101,6 @@ class GameLoop {
     const timeLapse = newTime - this.initTime;
     const deltaTime = newTime - this.oldTime;
     this.oldTime = newTime;
-
     this.update(deltaTime);
     this.render(timeLapse);
 

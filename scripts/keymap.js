@@ -17,4 +17,5 @@ const keyMap = {
   y:      89,
   esc:    27,
   enter:  13,
+  space:  32,
 };

@@ -48,6 +48,7 @@ class Canvas {
     this.context.drawImage(object.image, object.xPos, object.yPos, object.width, object.height);
   }
 
+
   drawPlatforms(platforms) {
     _.forEach(platforms, (platform) => {
       if (platform.attributes.visible) {
@@ -100,11 +101,13 @@ class Canvas {
     this.context.font = "60px 'Press Start 2P'";
     this.context.textAlign = "center";
     this.context.fillStyle = menu.currentItem === menu.items.newGame ? "blue" : "white";
-    this.context.fillText(menu.items.newGame, this.canvas.width/2, this.canvas.height/2 - 50);
+    this.context.fillText(menu.items.newGame, this.canvas.width/2, this.canvas.height/2 - 150);
     this.context.fillStyle = menu.currentItem === menu.items.highScores ? "blue" : "white";
-    this.context.fillText(menu.items.highScores, this.canvas.width/2, this.canvas.height/2 + 50);
+    this.context.fillText(menu.items.highScores, this.canvas.width/2, this.canvas.height/2 - 50);
     this.context.fillStyle = menu.currentItem === menu.items.credits ? "blue" : "white";
-    this.context.fillText(menu.items.credits, this.canvas.width/2, this.canvas.height/2 + 150);
+    this.context.fillText(menu.items.credits, this.canvas.width/2, this.canvas.height/2 + 50);
+    this.context.fillStyle = menu.currentItem === menu.items.reconfigure ? "blue" : "white";
+    this.context.fillText(menu.items.reconfigure, this.canvas.width/2, this.canvas.height/2 + 150);
     this.context.restore();
   }
 }
