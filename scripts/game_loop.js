@@ -23,7 +23,7 @@ class GameLoop {
     this.canvas.create();
 
     this.state = new State(this.height, this.width);
-    this.menu = new Menu(() => this.startGame());
+    this.menu = new Menu(() => this.restartGame());
     if (firstTime) { this.menu.isActive = true; }
     // Initialize other game objects
 
@@ -33,6 +33,13 @@ class GameLoop {
     this.objects = new GameObjects(this.height, this.width);
 
     this.gameLoop()
+  }
+
+  restartGame() {
+    // Restart stuff
+    this.initTime = performance.now();
+    this.menu.isActive = false;
+  //  TODO: reset all other values
   }
 
   displayTime(miliseconds) {

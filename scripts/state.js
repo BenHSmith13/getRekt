@@ -110,7 +110,6 @@ class State {
         }
       })
     }
-    console.log(_.size(platforms));
   }
 
   // This also needs to go in a particle System
