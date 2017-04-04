@@ -1,7 +1,19 @@
 
 class GameObjects {
   constructor(height, width) {
+    this.palyer = this.newPlayer(height, width);
     this.particleCount = 40;
+  }
+
+  newPlayer(height, width) {
+    return new GameObject(
+      'player',
+      25,
+      25,
+      width / 2 - 12,
+      height /2 - 12,
+      {}
+    )
   }
 
   newParticle(index) {
