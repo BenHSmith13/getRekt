@@ -57,7 +57,10 @@ class GameLoop {
   render(timelapse) {
     this.canvas.clear();
     this.canvas.drawBackground();
-    this.canvas.drawParticles(null);
+    // this.canvas.drawParticles(null);
+    this.canvas.drawPlatforms(this.objects.platformPool);
+    this.canvas.drawRect(this.objects.player);
+
     if (this.menu.isActive) {
       this.canvas.drawMenu(this.menu);
     } else if(this.state.lives <= 0) {
@@ -75,8 +78,9 @@ class GameLoop {
     } else if (this.state.countDown > 0 && !_.isNaN(deltaTime)) {
       this.state.countDown -= deltaTime / 1000;
     } else if (this.state.lives > 0) {
-      const {} = this.objects;
-      this.state.updateParticles(null, deltaTime);
+      const { platformPool } = this.objects;
+      // this.state.updateParticles(null, deltaTime);
+      this.state.updatePlatforms(platformPool, deltaTime);
     }
   }
 

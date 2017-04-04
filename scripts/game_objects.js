@@ -1,8 +1,12 @@
 
+const initialPlatforms = 16;
+
 class GameObjects {
   constructor(height, width) {
-    this.palyer = this.newPlayer(height, width);
-    this.particleCount = 40;
+    this.player = this.newPlayer(height, width);
+    this.shipPool = {};
+    this.platformPool = this.generatePlatforms(height, width);
+    this.bulletPool = {};
   }
 
   newPlayer(height, width) {
@@ -12,8 +16,32 @@ class GameObjects {
       25,
       width / 2 - 12,
       height /2 - 12,
-      {}
+      {
+        color: 'white',
+      }
     )
+  }
+
+  static newPlatform(height, width, index, level = 0, offscreen ) {
+    return new GameObject(
+      `platform_${index}`,
+      50,
+      50,
+      offscreen ? width : width / 14 * index,
+      height - 50 * (level + 1),
+      {
+        color: 'brown',
+        visible: true,
+      }
+    );
+  }
+
+  generatePlatforms(height, width) {
+    const platforms = {};
+    _.forEach(_.range(initialPlatforms), (index) => {
+      platforms[`platform_${index}`] = GameObjects.newPlatform(height, width, index);
+    });
+    return platforms;
   }
 
   newParticle(index) {

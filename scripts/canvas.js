@@ -48,6 +48,14 @@ class Canvas {
     this.context.drawImage(object.image, object.xPos, object.yPos, object.width, object.height);
   }
 
+  drawPlatforms(platforms) {
+    _.forEach(platforms, (platform) => {
+      if (platform.attributes.visible) {
+        this.drawRect(platform);
+      }
+    });
+  }
+
   countDown(n) {
     this.context.save();
     this.context.font = "300px 'Press Start 2P'";
