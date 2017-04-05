@@ -19,7 +19,7 @@ class Canvas {
     this.context.restore();
   }
 
-  drawRect(object, half) {
+  drawRect(object) {
     this.context.save();
     this.context.fillStyle = object.attributes.color;
     if (object.attributes.angle) {
@@ -28,7 +28,7 @@ class Canvas {
     this.context.fillRect(
       object.xPos,
       object.yPos,
-      half ? object.width / 2 : object.width,
+      object.width,
       object.height);
     this.context.stroke();
     this.context.restore();

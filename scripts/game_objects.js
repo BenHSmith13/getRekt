@@ -3,21 +3,25 @@ const initialPlatforms = 16;
 
 class GameObjects {
   constructor(height, width) {
-    this.player = this.newPlayer(height, width);
+    this.player = this.newPlayer();
     this.shipPool = {};
     this.platformPool = this.generatePlatforms(height, width);
     this.bulletPool = {};
   }
 
-  newPlayer(height, width) {
+  newPlayer() {
     return new GameObject(
       'player',
       25,
       25,
-      width / 2 - 12,
-      height /2 - 12,
+      325,
+      525,
       {
         color: 'white',
+        jumping: false,
+        velocity: 0,
+        jumpPower: 80,
+        speed: 5,
       }
     )
   }

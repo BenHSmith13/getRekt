@@ -31,7 +31,6 @@ class GameLoop {
     this.keys = input.keysdown;
 
     this.objects = new GameObjects(this.height, this.width);
-    this.character = new Character();
     this.gameLoop()
   }
 
@@ -67,9 +66,8 @@ class GameLoop {
     // this.canvas.drawParticles(null);
     this.canvas.drawPlatforms(this.objects.platformPool);
     this.canvas.drawRect(this.objects.player);
-
-    // this.canvas.drawBox(this.character);
     this.canvas.drawParticles(null);
+
     if (this.menu.isActive) {
       this.canvas.drawMenu(this.menu);
     } else if(this.state.lives <= 0) {
@@ -91,8 +89,7 @@ class GameLoop {
       const { platformPool } = this.objects;
       // this.state.updateParticles(null, deltaTime);
       this.state.updatePlatforms(platformPool, deltaTime);
-      if(this.keys[keyMap.space] && !this.character.jumping ) {
-      }
+      this.state.updatePlayer(this.objects.player, deltaTime, this.keys);
       this.state.updateParticles(null, deltaTime);
     }
   }

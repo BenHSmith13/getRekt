@@ -8,6 +8,7 @@ class State {
     this.countDown = 3;
     this.score = 0;
     this.lives = 3;
+    this.centerPlatforms = [];
 
     this.platformLevels = {
       0: true,
@@ -73,9 +74,14 @@ class State {
     }
   }
 
+  updatePlayer(player, deltaTime, keysPressed) {
+    player.update(keysPressed, deltaTime);
+  }
+
   updatePlatforms(platforms, deltaTime) {
     const timeMod = deltaTime ? deltaTime / 100 : 0;
     let furthestX = 0;
+    this.centerPlatforms = [];
     _.forEach(platforms, (platform) => {
       if (platform.attributes.visible) {
         platform.xPos = platform.xPos - this.speed * timeMod;
@@ -110,8 +116,6 @@ class State {
         }
       })
     }
-
-    console.log(_.size(platforms));
   }
 
   // This also needs to go in a particle System
