@@ -11,12 +11,20 @@ class Menu {
     };
     this.scoresVisible = false;
     this.creditsVisible = false;
-    this.initListeners((key) => this.menuActions(key));
+    this.reconfigureVisible = false;
+    this.initListeners((codes) => this.menuActions(codes));
     this.resetGame = resetGame;
+    this.newJumper = localStorage.getItem('reconfigured') || 'space bar';
   }
 
-  menuActions(keyCode) {
-    switch (keyCode) {
+  menuActions(codes) {
+    if (this.reconfigureVisible && codes.keyCode !== keyMap.enter) {
+      localStorage.setItem('reconfigured', codes.stringKey);
+      this.newJumper = codes.stringKey;
+      let node = document.getElementById('currentBinding');
+      node.innerHTML = `Reconfigured Jump To: '${codes.stringKey}'`
+    }
+    switch (codes.keyCode) {
       case keyMap.up:
         this.arrowUp();
         break;
@@ -36,7 +44,7 @@ class Menu {
 
   initListeners(callback) {
     addEventListener("keydown", (e) => {
-      callback(e.keyCode);
+      callback({keyCode: e.keyCode, stringKey: e.key});
     }, false);
   }
 
@@ -92,6 +100,7 @@ class Menu {
   showCorrectElements() {
     document.getElementById('highScores').style.display = this.scoresVisible ? 'block' : 'none';
     document.getElementById('credits').style.display = this.creditsVisible ? 'block' : 'none';
+    document.getElementById('reconfigure').style.display = this.reconfigureVisible ? 'block' : 'none';
   }
 
   showScores() {
@@ -123,6 +132,10 @@ class Menu {
 
   reconfigControls() {
     console.log('Will set up new controls page here.')
+    this.reconfigureVisible = !this.reconfigureVisible;
+    this.showCorrectElements();
+    let node = document.getElementById('currentBinding')
+    node.innerHTML = `Reconfigured Jump To: '${this.newJumper}'`
   }
 
   select() {

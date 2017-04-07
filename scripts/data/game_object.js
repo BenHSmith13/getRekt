@@ -28,9 +28,9 @@ class GameObject {
 
   updatePlayer(keysPressed, deltaTime) {
     const timeMod = deltaTime ? deltaTime / 1000 : 0;
-    const gravityModifier = 5;
+    const gravityModifier = 5; // BIGGER means faster up and down
 
-    if (!this.attributes.jumping && keysPressed[keyMap.space] && this.attributes.velocity === 0) {
+    if (!this.attributes.jumping && keysPressed[keyMap[localStorage.reconfigured]] && this.attributes.velocity === 0) {
       this.attributes.jumping = true;
       this.attributes.velocity = this.attributes.jumpPower*-1;
     }

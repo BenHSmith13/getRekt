@@ -56,6 +56,10 @@ h1 {
   display: none;
 }
 
+#reconfigure {
+  display: none;
+}
+
 #credits p {
   font-family: 'Press Start 2P', cursive;
   text-align: center;
