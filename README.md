@@ -7,3 +7,20 @@ Assets
 https://opengameart.org/content/dirt-platformer-tiles
 ### Ships
 https://opengameart.org/content/spaceships-top-down
+
+
+## Requirements
+* Game Play [Both]
+* Menuing [Both] Done?
+* Reconfigurable Controls [Call]
+* Particle Effects [Smith]
+* Server Based High Scores [Smith]
+* Sound and Music [Call]
+* AI Enemies [?]
+* Tile Rendering [Smith]
+* Collision Detection [Smith] [Call]
+* Over the Top Weapons [Smith] [Call]
+* Physics [Call]
+* Procedural Generation [Smith]
+* Animation [Smith]
+
