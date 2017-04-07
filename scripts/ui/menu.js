@@ -44,7 +44,7 @@ class Menu {
 
   initListeners(callback) {
     addEventListener("keydown", (e) => {
-      callback({keyCode: e.keyCode, stringKey: e.key});
+      callback({keyCode: e.keyCode, stringKey: _.isEmpty(e.key) ? e.key : _.lowerCase(e.code)  });
     }, false);
   }
 
