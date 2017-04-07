@@ -27,33 +27,31 @@ class GameObject {
   }
 
   updatePlayer(keysPressed, deltaTime) {
-    const timeMod = deltaTime ? deltaTime / 100 : 0;
-    // platform.xPos = platform.xPos - this.speed * timeMod;
-    let { jumping, velocity, jumpPower } = this.attributes;
+    const timeMod = deltaTime ? deltaTime / 1000 : 0;
+    const gravityModifier = 5;
 
-    if (!jumping && keysPressed[keyMap.space] && velocity === 0) {
+    if (!this.attributes.jumping && keysPressed[keyMap.space] && this.attributes.velocity === 0) {
       this.attributes.jumping = true;
-      velocity = jumpPower*-1;
+      this.attributes.velocity = this.attributes.jumpPower*-1;
     }
 
     // update gravity
-    if (velocity < 0) {
-      velocity++;
+    if (this.attributes.velocity < 0) {
+      this.attributes.velocity = this.attributes.velocity + gravityModifier;
     }
     else {
       // fall slower than you jump
-      velocity += 2.0;
+      this.attributes.velocity += gravityModifier;
     }
 
-    this.yPos += velocity;  // sorta working
-    // this.yPos = this.yPos - velocity * timeMod; // make it move over a function of time?
+    this.yPos += (this.attributes.velocity * timeMod);
 
     // stop at bottom of screen
     // will use collision detection at some point
     if (this.yPos + this.height >= 550) {
       this.yPos = 550 - this.height;
       this.attributes.jumping = false;
-      velocity = 0;
+      this.attributes.velocity = 0;
     }
   }
 }

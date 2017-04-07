@@ -20,7 +20,7 @@ class GameObjects {
         color: 'white',
         jumping: false,
         velocity: 0,
-        jumpPower: 80,
+        jumpPower: 200,
         speed: 5,
       }
     )
