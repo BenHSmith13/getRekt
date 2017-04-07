@@ -1,12 +1,13 @@
 
 const initialPlatforms = 16;
+const initialBullets = 100;
 
 class GameObjects {
   constructor(height, width) {
     this.player = this.newPlayer();
     this.shipPool = {};
     this.platformPool = this.generatePlatforms(height, width);
-    this.bulletPool = {};
+    this.bulletPool = this.generateBullets();
   }
 
   newPlayer() {
@@ -40,12 +41,35 @@ class GameObjects {
     );
   }
 
+  static newBullet(index) {
+    return new GameObject(
+      `bullet_${index}`,
+      5,
+      5,
+      -10,
+      -10,
+      {
+        color: 'blue',
+        visible: false,
+        direction: 0,
+      }
+    );
+  }
+
   generatePlatforms(height, width) {
     const platforms = {};
     _.forEach(_.range(initialPlatforms), (index) => {
       platforms[`platform_${index}`] = GameObjects.newPlatform(height, width, index);
     });
     return platforms;
+  }
+
+  generateBullets() {
+    const bullets = {};
+    _.forEach(_.range(initialPlatforms), (index) => {
+      bullets[`bullet_${index}`] = GameObjects.newBullet(index);
+    });
+    return bullets;
   }
 
   newParticle(index) {

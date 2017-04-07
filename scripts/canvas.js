@@ -6,10 +6,20 @@ class Canvas {
     this.canvas.height = height;
     this.canvas.style = 'padding: 20px';
     this.context = null;
+    this.mousePosition = {
+      xPos: 0,
+      yPos: 0,
+    }
   }
 
   create() {
-  this.context = this.canvas.getContext("2d");
+    this.context = this.canvas.getContext("2d");
+    const rect = this.canvas.getBoundingClientRect();
+    // TODO: make this a named function to clean up, maybe
+    this.canvas.addEventListener('mousemove', (e) => {
+      this.mousePosition.xPos = e.clientX - rect.left;
+      this.mousePosition.yPos = e.clientY - rect.top;
+    });
   }
 
   drawBackground() {
@@ -53,6 +63,14 @@ class Canvas {
     _.forEach(platforms, (platform) => {
       if (platform.attributes.visible) {
         this.drawRect(platform);
+      }
+    });
+  }
+
+  drawBullets(bullets) {
+    _.forEach(bullets, (bullet) => {
+      if (bullet.attributes.visible) {
+        this.drawCircle(bullet);
       }
     });
   }

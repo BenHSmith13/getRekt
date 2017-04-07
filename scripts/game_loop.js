@@ -65,6 +65,7 @@ class GameLoop {
     this.canvas.drawBackground();
     // this.canvas.drawParticles(null);
     this.canvas.drawPlatforms(this.objects.platformPool);
+    this.canvas.drawBullets(this.objects.bulletPool);
     this.canvas.drawRect(this.objects.player);
     this.canvas.drawParticles(null);
 
@@ -86,10 +87,11 @@ class GameLoop {
     } else if (this.state.countDown > 0 && !_.isNaN(deltaTime)) {
       this.state.countDown -= deltaTime / 1000;
     } else if (this.state.lives > 0) {
-      const { platformPool } = this.objects;
+      const { player, platformPool, bulletPool } = this.objects;
       // this.state.updateParticles(null, deltaTime);
       this.state.updatePlatforms(platformPool, deltaTime);
-      this.state.updatePlayer(this.objects.player, deltaTime, this.keys);
+      this.state.updateBullets(bulletPool, player, this.canvas.mousePosition, deltaTime);
+      this.state.updatePlayer(player, deltaTime, this.keys);
       this.state.updateParticles(null, deltaTime);
     }
   }
