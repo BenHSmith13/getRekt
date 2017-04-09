@@ -3,41 +3,20 @@ class State {
   constructor (height, width) {
     this.height = height;
     this.width = width;
-    this.speed = 20;
 
     this.countDown = 3;
     this.score = 0;
     this.lives = 3;
-    this.centerPlatforms = [];
 
-    this.reloadTime = 3;
-    this.bulletSpeed = 90;
-
-    this.platformLevels = {
-      0: true,
-      1: false,
-      2: false,
-    }
+    this.bulletState = new BulletState(height, width);
+    this.platformState = new PlatformState(height, width);
   }
 
-  updatePosition(object, deltaTime) {
+  updateState(data, deltaTime) {
+  //  This is going to be the 'do all the things' function;
     const timeMod = deltaTime ? deltaTime / 100 : 0;
-  }
-
-  // this needs to be in a particle system
-  updateParticles(particles, deltaTime) {
-    const timeMod = deltaTime ? deltaTime / 100 : 0;
-    _.forEach(particles, (particle) => {
-      if (particle.attributes.visible) {
-        particle.xPos += this.ballSpeed * Utils.sin(particle.attributes.direction) * timeMod;
-        particle.yPos += this.ballSpeed * Utils.cos(particle.attributes.direction) * timeMod;
-        particle.attributes.duration -= timeMod / 10;
-        particle.attributes.angle += this.ballSpeed * timeMod * particle.attributes.rotationDirection;
-        if (particle.attributes.duration <= 0) {
-          particle.attributes.visible = false;
-        }
-      }
-    });
+    this.platformState.updatePlatforms(data.platforms, timeMod);
+    this.bulletState.updateBullets(data.bullets, data.player, data.mousePosition, timeMod);
   }
 
   saveScore() {
@@ -79,80 +58,6 @@ class State {
 
   updatePlayer(player, deltaTime, keysPressed) {
     player.update(keysPressed, deltaTime);
-  }
-
-  updatePlatforms(platforms, deltaTime) {
-    const timeMod = deltaTime ? deltaTime / 100 : 0;
-    let furthestX = 0;
-    _.forEach(platforms, (platform) => {
-      if (platform.attributes.visible) {
-        platform.xPos = platform.xPos - this.speed * timeMod;
-
-        // this is check to see if we need to draw more squares
-        const xDist = platform.xPos + platform.width;
-        if (xDist > furthestX) { furthestX = xDist; }
-
-        // disable platforms off the back
-        if (platform.xPos + platform.width < 0) {
-          platform.attributes.visible = false;
-        }
-      }
-    });
-
-    if (furthestX < this.width) {
-      this.platformLevels[1] = this.platformLevels[1] ? !!_.random(2) : _.random(5) > 3;
-      this.platformLevels[2] = this.platformLevels[1] && !!_.random();
-
-      // Adds platforms to the end of the drawing scope
-      _.forEach(this.platformLevels, (level, index) => {
-        if (level) {
-          let newPlatform = _.sample(_.filter(platforms, platform => !platform.attributes.visible));
-          if (!newPlatform) {
-            const nameIndex = _.size(platforms);
-            platforms[`platform_${nameIndex}`] = GameObjects.newPlatform(this.height, this.width, nameIndex, parseInt(index), true);
-          } else {
-            newPlatform.xPos = this.width;
-            newPlatform.yPos = this.height - 50 * (parseInt(index) + 1);
-            newPlatform.attributes.visible = true;
-          }
-        }
-      })
-    }
-  }
-
-  getMouseAngle(player, mousePosition) {
-    return  Math.atan2(mousePosition.yPos - player.yPos, mousePosition.xPos - player.xPos) * 180 / Math.PI;
-  }
-
-  updateBullets(bullets, player, mousePosition, deltaTime) {
-    const timeMod = deltaTime ? deltaTime / 100 : 0;
-    _.forEach(bullets, (bullet) => {
-      if (bullet.attributes.visible) {
-        bullet.xPos = bullet.xPos + ( Utils.cos(bullet.attributes.direction) * this.bulletSpeed ) * timeMod;
-        bullet.yPos = bullet.yPos + ( Utils.sin(bullet.attributes.direction) * this.bulletSpeed ) * timeMod;
-        if (bullet.xPos + bullet.width < 0
-          || bullet.xPos - bullet.width > this.width
-          || bullet.yPos + bullet.height < 0
-          || bullet.yPos - bullet.height > this.height) {
-          bullet.attributes.visible = false;
-        }
-      }
-    });
-
-    if (this.reloadTime < 0 ) {
-      this.reloadTime = 1;
-      let newBullet = _.sample(_.filter(bullets, bullet => !bullet.attributes.visible));
-      if (!newBullet) {
-      //  make a new bullet
-      } else {
-        newBullet.attributes.visible = true;
-        newBullet.attributes.direction = this.getMouseAngle(player, mousePosition);
-        newBullet.xPos = player.xPos + player.width / 2;
-        newBullet.yPos = player.yPos + player.height / 2;
-      }
-    } else {
-      this.reloadTime -= timeMod;
-    }
   }
 
   // This also needs to go in a particle System

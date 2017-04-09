@@ -88,11 +88,15 @@ class GameLoop {
       this.state.countDown -= deltaTime / 1000;
     } else if (this.state.lives > 0) {
       const { player, platformPool, bulletPool } = this.objects;
-      // this.state.updateParticles(null, deltaTime);
-      this.state.updatePlatforms(platformPool, deltaTime);
-      this.state.updateBullets(bulletPool, player, this.canvas.mousePosition, deltaTime);
+      const data = {
+        player,
+        platforms: platformPool,
+        bullets: bulletPool,
+        mousePosition: this.canvas.mousePosition,
+      };
+
+      this.state.updateState(data, deltaTime);
       this.state.updatePlayer(player, deltaTime, this.keys);
-      this.state.updateParticles(null, deltaTime);
     }
   }
 

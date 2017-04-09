@@ -1,6 +1,6 @@
 
 const initialPlatforms = 16;
-const initialBullets = 100;
+const initialBullets = 50;
 
 class GameObjects {
   constructor(height, width) {
@@ -66,7 +66,7 @@ class GameObjects {
 
   generateBullets() {
     const bullets = {};
-    _.forEach(_.range(initialPlatforms), (index) => {
+    _.forEach(_.range(initialBullets), (index) => {
       bullets[`bullet_${index}`] = GameObjects.newBullet(index);
     });
     return bullets;
