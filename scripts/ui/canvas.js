@@ -9,7 +9,8 @@ class Canvas {
     this.mousePosition = {
       xPos: 0,
       yPos: 0,
-    }
+    };
+    this.shipDrawer = new ShipDrawer();
   }
 
   create() {
@@ -20,6 +21,10 @@ class Canvas {
       this.mousePosition.xPos = e.clientX - rect.left;
       this.mousePosition.yPos = e.clientY - rect.top;
     });
+  }
+
+  draw(data){
+    this.shipDrawer.drawShips(data.ships, this.context);
   }
 
   drawBackground() {
@@ -52,10 +57,6 @@ class Canvas {
     this.context.fill();
     this.context.stroke();
     this.context.restore();
-  }
-
-  draw(object) {
-    this.context.drawImage(object.image, object.xPos, object.yPos, object.width, object.height);
   }
 
 

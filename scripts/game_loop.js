@@ -67,8 +67,14 @@ class GameLoop {
     this.canvas.drawPlatforms(this.objects.platformPool);
     this.canvas.drawBullets(this.objects.bulletPool);
     this.canvas.drawRect(this.objects.player);
-    this.canvas.drawShips(this.objects.shipPool);
-    this.canvas.drawParticles(null);
+    // this.canvas.drawShips(this.objects.shipPool);
+
+    // TODO: move all drawing into this draw function
+    const { player, platformPool, bulletPool, shipPool } = this.objects;
+    const data = {
+      ships: shipPool,
+    };
+    this.canvas.draw(data);
 
     if (this.menu.isActive) {
       this.canvas.drawMenu(this.menu);

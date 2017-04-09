@@ -4,6 +4,7 @@ class ShipState {
   constructor(height, width) {
     this.height = height;
     this.width = width;
+    this.shipDirectory = new ShipDirectory();
 
     this.spawnCounter = 20;
     this.spawnRate = this.spawnCounter;
@@ -40,12 +41,16 @@ class ShipState {
         ships[`ship_${nameIndex}`] = newShip;
         console.log('new Ship');
       } else {
+        // TODO: clean me up
+        const shipData = this.shipDirectory.getShip('lightRunner');
         newShip.attributes.visible = true;
         // newShip.attributes.type = '';
         newShip.xPos = this.width;
         newShip.yPos = _.random(6) * 50;
-        newShip.width = 100;
-        newShip.height = 75;
+        newShip.width = shipData.width;
+        newShip.height = shipData.height;
+        // TODO: not merge
+        newShip.attributes = _.merge(newShip.attributes, shipData);
       }
     } else {
       this.spawnCounter -= timeMod;
