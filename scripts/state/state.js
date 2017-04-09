@@ -60,19 +60,6 @@ class State {
     player.update(keysPressed, deltaTime);
   }
 
-  // This also needs to go in a particle System
-  activateParticles(brick, particles) {
-    const visibleParticles = _.filter(particles, particle => !particle.attributes.visible);
-    _.forEach(particles, (particle, index) => {
-      particle.attributes.direction = Utils.random(360);
-      particle.attributes.rotationDirection = Utils.random(1, -1);
-      particle.attributes.angle = 0;
-      particle.attributes.duration = 2;
-      particle.attributes.color = brick.attributes.color;
-      particle.attributes.visible = true;
-    });
-  }
-
   collisions(ball, paddle, bricks, brickParticles) {
   //  Collision detection here
   }
