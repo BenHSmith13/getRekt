@@ -10,12 +10,14 @@ class State {
 
     this.bulletState = new BulletState(height, width);
     this.platformState = new PlatformState(height, width);
+    this.shipState = new ShipState(height, width);
   }
 
   updateState(data, deltaTime) {
   //  This is going to be the 'do all the things' function;
     const timeMod = deltaTime ? deltaTime / 100 : 0;
     this.platformState.updatePlatforms(data.platforms, timeMod);
+    this.shipState.updateShips(data.ships, timeMod);
     this.bulletState.updateBullets(data.bullets, data.player, data.mousePosition, timeMod);
   }
 

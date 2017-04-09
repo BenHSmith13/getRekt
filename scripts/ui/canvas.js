@@ -67,6 +67,14 @@ class Canvas {
     });
   }
 
+  drawShips(ships) {
+    _.forEach(ships, (ship) => {
+      if (ship.attributes.visible) {
+        this.drawRect(ship);
+      }
+    });
+  }
+
   drawBullets(bullets) {
     _.forEach(bullets, (bullet) => {
       if (bullet.attributes.visible) {

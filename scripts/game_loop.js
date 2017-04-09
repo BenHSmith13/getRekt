@@ -63,10 +63,11 @@ class GameLoop {
   render(timelapse) {
     this.canvas.clear();
     this.canvas.drawBackground();
-    // this.canvas.drawParticles(null);
+    // TODO: Make this cleaner, canvas needs to be a system
     this.canvas.drawPlatforms(this.objects.platformPool);
     this.canvas.drawBullets(this.objects.bulletPool);
     this.canvas.drawRect(this.objects.player);
+    this.canvas.drawShips(this.objects.shipPool);
     this.canvas.drawParticles(null);
 
     if (this.menu.isActive) {
@@ -87,11 +88,12 @@ class GameLoop {
     } else if (this.state.countDown > 0 && !_.isNaN(deltaTime)) {
       this.state.countDown -= deltaTime / 1000;
     } else if (this.state.lives > 0) {
-      const { player, platformPool, bulletPool } = this.objects;
+      const { player, platformPool, bulletPool, shipPool } = this.objects;
       const data = {
         player,
         platforms: platformPool,
         bullets: bulletPool,
+        ships: shipPool,
         mousePosition: this.canvas.mousePosition,
       };
 
