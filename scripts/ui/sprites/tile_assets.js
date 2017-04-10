@@ -34,4 +34,13 @@ class TileAssets {
     }
   }
 
+  ground() {
+    return {
+      tile: this.tiles,
+      frameX: 1 * tileWidth,
+      frameY: 0 * tileWidth + 0.5,
+      width: tileWidth - 1,
+    }
+  }
+
 }

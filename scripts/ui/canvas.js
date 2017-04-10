@@ -14,6 +14,7 @@ class Canvas {
     this.tileAssets = new TileAssets();
     this.background = new Background(height, width, this.tileAssets);
     this.shipDrawer = new ShipDrawer();
+    this.platformDrawer = new PlatformDrawer(height, width, this.tileAssets);
   }
 
   create() {
@@ -28,14 +29,8 @@ class Canvas {
 
   draw(data){
     this.background.draw(this.context);
+    this.platformDrawer.drawPlatforms(data.platforms, this.context);
     this.shipDrawer.drawShips(data.ships, this.context);
-  }
-
-  drawBackground() {
-    this.context.save();
-    this.context.fillStyle = 'black';
-    this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    this.context.restore();
   }
 
   drawRect(object) {
@@ -61,15 +56,6 @@ class Canvas {
     this.context.fill();
     this.context.stroke();
     this.context.restore();
-  }
-
-
-  drawPlatforms(platforms) {
-    _.forEach(platforms, (platform) => {
-      if (platform.attributes.visible) {
-        this.drawRect(platform);
-      }
-    });
   }
 
   drawBullets(bullets) {
