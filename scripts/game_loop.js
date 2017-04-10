@@ -27,6 +27,7 @@ class GameLoop {
     this.canvas = new Canvas(this.height, this.width);
     this.canvas.create();
     this.sounds = new GameSounds();
+    this.sounds.getSound('explosion').play()
 
     this.state = new State(this.height, this.width);
     this.menu = new Menu(() => this.restartGame());
