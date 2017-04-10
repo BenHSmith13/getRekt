@@ -69,19 +69,18 @@ class GameLoop {
 
   render(timelapse) {
     this.canvas.clear();
-    this.canvas.drawBackground();
-    // TODO: Make this cleaner, canvas needs to be a system
-    this.canvas.drawPlatforms(this.objects.platformPool);
-    this.canvas.drawBullets(this.objects.bulletPool);
-    this.canvas.drawRect(this.objects.player);
-    // this.canvas.drawShips(this.objects.shipPool);
-
     // TODO: move all drawing into this draw function
     const { player, platformPool, bulletPool, shipPool } = this.objects;
     const data = {
       ships: shipPool,
     };
     this.canvas.draw(data);
+
+    // TODO: Make this cleaner, canvas needs to be a system
+    this.canvas.drawPlatforms(this.objects.platformPool);
+    this.canvas.drawBullets(this.objects.bulletPool);
+    this.canvas.drawRect(this.objects.player);
+    // this.canvas.drawShips(this.objects.shipPool);
 
     if (this.menu.isActive) {
       this.canvas.drawMenu(this.menu);

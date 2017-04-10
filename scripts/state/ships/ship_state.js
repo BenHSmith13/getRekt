@@ -6,7 +6,7 @@ class ShipState {
     this.width = width;
     this.shipDirectory = new ShipDirectory();
 
-    this.spawnCounter = 20;
+    this.spawnCounter = 40;
     this.spawnRate = this.spawnCounter;
   }
 
@@ -42,7 +42,7 @@ class ShipState {
         console.log('new Ship');
       } else {
         // TODO: clean me up
-        const shipData = this.shipDirectory.getShip('lightRunner');
+        const shipData = this.shipDirectory.getRandomShip();
         newShip.attributes.visible = true;
         // newShip.attributes.type = '';
         newShip.xPos = this.width;

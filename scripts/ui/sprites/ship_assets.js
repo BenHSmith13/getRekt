@@ -16,8 +16,9 @@ class ShipAssets {
 
   makeShipList() {
    return {
-     lightRunner: this.makeImage('./assets/lightRunner.png'),
-     scoutShip: this.makeImage('./assets/2.png'),
+     lightRunner: this.makeImage('./assets/ships/1.png'),
+     scoutShip: this.makeImage('./assets/ships/2.png'),
+     gunShip: this.makeImage('./assets/ships/10.png'),
    }
   }
 }

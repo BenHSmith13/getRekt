@@ -5,6 +5,7 @@ class ShipDrawer {
   }
 
   drawShip(ship, context) {
+    context.save();
     context.drawImage(
       this.shipAssets.getAsset(ship.attributes.name),
       ship.xPos,
@@ -12,6 +13,7 @@ class ShipDrawer {
       ship.width,
       ship.height
     );
+    context.restore();
   }
 
   drawShips(ships, context) {

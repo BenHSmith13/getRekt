@@ -10,6 +10,9 @@ class Canvas {
       xPos: 0,
       yPos: 0,
     };
+
+    this.tileAssets = new TileAssets();
+    this.background = new Background(height, width, this.tileAssets);
     this.shipDrawer = new ShipDrawer();
   }
 
@@ -24,6 +27,7 @@ class Canvas {
   }
 
   draw(data){
+    this.background.draw(this.context);
     this.shipDrawer.drawShips(data.ships, this.context);
   }
 
@@ -64,14 +68,6 @@ class Canvas {
     _.forEach(platforms, (platform) => {
       if (platform.attributes.visible) {
         this.drawRect(platform);
-      }
-    });
-  }
-
-  drawShips(ships) {
-    _.forEach(ships, (ship) => {
-      if (ship.attributes.visible) {
-        this.drawRect(ship);
       }
     });
   }
