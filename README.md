@@ -8,6 +8,9 @@ https://opengameart.org/content/dirt-platformer-tiles
 ### Ships
 https://opengameart.org/content/spaceships-top-down
 
+### Explosion Sounds
+http://soundbible.com/1986-Bomb-Exploding.html
+
 
 ## Requirements
 * Game Play [Both]
