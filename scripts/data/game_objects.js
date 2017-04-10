@@ -38,6 +38,7 @@ class GameObjects {
       {
         color: 'brown',
         visible: true,
+        grass: _.random(2),
       }
     );
   }

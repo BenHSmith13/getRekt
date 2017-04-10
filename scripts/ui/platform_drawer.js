@@ -26,6 +26,11 @@ class PlatformDrawer {
         // TODO: make me not suck
         const brick = this.tileAssets.ground();
         this.drawBrick(brick, context, platform.xPos, platform.yPos);
+
+        if (platform.attributes.grass) {
+          const grassImage = this.tileAssets.grass(platform.attributes.grass);
+          this.drawBrick(grassImage, context, platform.xPos, platform.yPos - 50);
+        }
       }
     });
   }

@@ -43,4 +43,13 @@ class TileAssets {
     }
   }
 
+  grass(n) {
+    return {
+      tile: this.tiles,
+      frameX: (4 + n) * tileWidth,
+      frameY: 2 * tileWidth + 0.5,
+      width: tileWidth - 1,
+    }
+  }
+
 }

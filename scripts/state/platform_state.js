@@ -43,6 +43,7 @@ class PlatformState {
             newPlatform.xPos = this.width;
             newPlatform.yPos = this.height - 50 * (parseInt(index) + 1);
             newPlatform.attributes.visible = true;
+            newPlatform.attributes.grass = _.random(2);
           }
         }
       })
