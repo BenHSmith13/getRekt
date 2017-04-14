@@ -9,5 +9,6 @@ class Bullet {
     this.visible = false;
 
     this.direction = 0;
+    this.owner = null;
   }
 }

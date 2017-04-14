@@ -14,5 +14,7 @@ class Player {
 
     this.state = 'running';
     this.animation = 0;
+    this.reloadTime = 1;
+    this.reload = this.reloadTime;
   }
 }

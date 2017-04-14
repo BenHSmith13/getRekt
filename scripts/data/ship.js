@@ -8,6 +8,7 @@ class Ship {
     this.width = 0;
     this.type = '';
 
+    this.visible = false;
     this.type = '';
     this.hp = 0;
     this.speed = 0;

@@ -19,7 +19,7 @@ class State {
     const timeMod = deltaTime ? deltaTime / 100 : 0;
     this.platformState.updatePlatforms(data.platforms, timeMod);
     this.shipState.updateShips(data.ships, timeMod);
-    this.bulletState.updateBullets(data.bullets, data.player, data.mousePosition, timeMod);
+    this.bulletState.updateBullets(data.bullets, data.player, data.ships, data.mousePosition, timeMod);
     this.playerState.updatePlayer(data.player, timeMod, keys);
   }
 

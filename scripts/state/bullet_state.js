@@ -4,7 +4,6 @@ class BulletState {
     this.height = height;
     this.width = width;
 
-    this.reloadTime = 3;
     this.bulletSpeed = 90;
   }
 
@@ -12,7 +11,7 @@ class BulletState {
     return  Math.atan2(mousePosition.yPos - player.yPos, mousePosition.xPos - player.xPos) * 180 / Math.PI;
   }
 
-  updateBullets(bullets, player, mousePosition, timeMod) {
+  moveBullets(bullets, timeMod) {
     _.forEach(bullets, (bullet) => {
       if (bullet.visible) {
         bullet.xPos = bullet.xPos + ( Utils.cos(bullet.direction) * this.bulletSpeed ) * timeMod;
@@ -25,14 +24,16 @@ class BulletState {
         }
       }
     });
+  }
 
-    if (this.reloadTime < 0 ) {
-      this.reloadTime = 1;
+  playerBullets(bullets, player, mousePosition, timeMod) {
+    if (player.reload < 0 ) {
+      player.reload = player.reloadTime;
       let newBullet = _.sample(_.filter(bullets, bullet => !bullet.visible));
       if (!newBullet) {
         //  make a new bullet
         const nameIndex = _.size(bullets);
-        newBullet = GameObjects.newBullet(nameIndex);
+        newBullet = BulletPool.newBullet(nameIndex);
         bullets[`bullet_${nameIndex}`] = newBullet;
         // console.log('new Bullet');
       } else {
@@ -42,7 +43,17 @@ class BulletState {
         newBullet.yPos = player.yPos + player.height / 2;
       }
     } else {
-      this.reloadTime -= timeMod;
+      player.reload -= timeMod;
     }
+  }
+
+  shipBullets(bullets, ships, timeMod) {
+
+  }
+
+  updateBullets(bullets, player, ships, mousePosition, timeMod){
+    this.moveBullets(bullets, timeMod);
+    this.playerBullets(bullets, player, mousePosition, timeMod);
+    this.shipBullets(bullets, ships, timeMod);
   }
 }
