@@ -15,6 +15,7 @@ class Canvas {
     this.background = new Background(height, width, this.tileAssets);
     this.shipDrawer = new ShipDrawer();
     this.platformDrawer = new PlatformDrawer(height, width, this.tileAssets);
+    this.playerDrawer = new PlayerDrawer();
   }
 
   create() {
@@ -29,8 +30,9 @@ class Canvas {
 
   draw(data){
     this.background.draw(this.context);
-    this.platformDrawer.drawPlatforms(data.platforms, this.context);
     this.shipDrawer.drawShips(data.ships, this.context);
+    this.platformDrawer.drawPlatforms(data.platforms, this.context);
+    this.playerDrawer.drawPlayer(data.player, this.context);
   }
 
   drawRect(object) {

@@ -22,7 +22,6 @@ class ShipState {
     _.forEach(ships, (ship) => {
       if (ship.attributes.visible) {
         ship.xPos = ship.xPos - ship.attributes.speed * timeMod;
-        // ship.yPos = ship.yPos * timeMod;
         if (this.outOfScope(ship)) {
           ship.attributes.visible = false;
         }
@@ -37,7 +36,7 @@ class ShipState {
       if (!newShip) {
         //  make a new ship
         const nameIndex = _.size(ships);
-        newShip = GameObjects.newShip(nameIndex);
+        newShip = ShipPool.newShip(nameIndex);
         ships[`ship_${nameIndex}`] = newShip;
         console.log('new Ship');
       } else {

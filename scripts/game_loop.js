@@ -74,13 +74,12 @@ class GameLoop {
     const data = {
       ships: shipPool,
       platforms: platformPool,
+      player
     };
     this.canvas.draw(data);
 
     // TODO: Make this cleaner, canvas needs to be a system
-    // this.canvas.drawPlatforms(this.objects.platformPool);
     this.canvas.drawBullets(this.objects.bulletPool);
-    this.canvas.drawRect(this.objects.player);
 
     if (this.menu.isActive) {
       this.canvas.drawMenu(this.menu);
@@ -109,8 +108,7 @@ class GameLoop {
         mousePosition: this.canvas.mousePosition,
       };
 
-      this.state.updateState(data, deltaTime);
-      this.state.updatePlayer(player, deltaTime, this.keys);
+      this.state.updateState(data, deltaTime, this.keys);
     }
   }
 

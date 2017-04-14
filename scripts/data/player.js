@@ -1,0 +1,22 @@
+
+class Player {
+  constructor() {
+    this.name = 'Player';
+    this.height = 40;
+    this.width = 40;
+    this.xPos = 315;
+    this.yPos = 510;
+
+    this.jumping = false;
+    this.velocity = 0;
+    this.jumpPower = 200;
+    this.speed = 5;
+
+    this.state = 'run01';
+  }
+
+  setState(state) {
+    this.state = state;
+  }
+
+}
