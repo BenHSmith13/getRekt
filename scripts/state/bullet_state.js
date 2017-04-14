@@ -14,21 +14,21 @@ class BulletState {
 
   updateBullets(bullets, player, mousePosition, timeMod) {
     _.forEach(bullets, (bullet) => {
-      if (bullet.attributes.visible) {
-        bullet.xPos = bullet.xPos + ( Utils.cos(bullet.attributes.direction) * this.bulletSpeed ) * timeMod;
-        bullet.yPos = bullet.yPos + ( Utils.sin(bullet.attributes.direction) * this.bulletSpeed ) * timeMod;
+      if (bullet.visible) {
+        bullet.xPos = bullet.xPos + ( Utils.cos(bullet.direction) * this.bulletSpeed ) * timeMod;
+        bullet.yPos = bullet.yPos + ( Utils.sin(bullet.direction) * this.bulletSpeed ) * timeMod;
         if (bullet.xPos + bullet.width < 0
           || bullet.xPos - bullet.width > this.width
           || bullet.yPos + bullet.height < 0
           || bullet.yPos - bullet.height > this.height) {
-          bullet.attributes.visible = false;
+          bullet.visible = false;
         }
       }
     });
 
     if (this.reloadTime < 0 ) {
       this.reloadTime = 1;
-      let newBullet = _.sample(_.filter(bullets, bullet => !bullet.attributes.visible));
+      let newBullet = _.sample(_.filter(bullets, bullet => !bullet.visible));
       if (!newBullet) {
         //  make a new bullet
         const nameIndex = _.size(bullets);
@@ -36,8 +36,8 @@ class BulletState {
         bullets[`bullet_${nameIndex}`] = newBullet;
         // console.log('new Bullet');
       } else {
-        newBullet.attributes.visible = true;
-        newBullet.attributes.direction = this.getMouseAngle(player, mousePosition);
+        newBullet.visible = true;
+        newBullet.direction = this.getMouseAngle(player, mousePosition);
         newBullet.xPos = player.xPos + player.width / 2;
         newBullet.yPos = player.yPos + player.height / 2;
       }

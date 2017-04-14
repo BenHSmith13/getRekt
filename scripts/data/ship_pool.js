@@ -1,7 +1,7 @@
 
 class ShipPool {
   constructor() {
-
+    this.initialShips = 5;
   }
 
   static newShip(index) {
@@ -10,7 +10,7 @@ class ShipPool {
 
   generateShips() {
     const ships = {};
-    _.forEach(_.range(initialBullets), (index) => {
+    _.forEach(_.range(this.initialShips), (index) => {
       ships[`ship_${index}`] = ShipPool.newShip(index);
     });
     return ships;

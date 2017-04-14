@@ -54,7 +54,7 @@ class Canvas {
     this.context.save();
     this.context.beginPath();
     this.context.arc(object.xPos, object.yPos, object.width, 0, 2*Math.PI);
-    this.context.fillStyle = object.attributes.color;
+    this.context.fillStyle = _.get(object, 'attributes.color', 'blue');
     this.context.fill();
     this.context.stroke();
     this.context.restore();
@@ -62,7 +62,7 @@ class Canvas {
 
   drawBullets(bullets) {
     _.forEach(bullets, (bullet) => {
-      if (bullet.attributes.visible) {
+      if (bullet.visible) {
         this.drawCircle(bullet);
       }
     });
