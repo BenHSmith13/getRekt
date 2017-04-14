@@ -26,7 +26,7 @@ class ShipDirectory {
         hp: 20,
         speed: 10,
         bulletType: 'normal',
-        bulletDirection: 225,
+        bulletDirection: 135,
         reloadTime: 1,
       },
       scoutShip: {
@@ -36,7 +36,7 @@ class ShipDirectory {
         hp: 20,
         speed: 20,
         bulletType: 'normal',
-        bulletDirection: _.random(200, 300),
+        bulletDirection: () => _.random(30, 160),
         reloadTime: 0.5,
       },
       gunShip: {
@@ -46,7 +46,7 @@ class ShipDirectory {
         hp: 40,
         speed: 5,
         bulletType: 'heavy',
-        bulletDirection: 270,
+        bulletDirection: 90,
         reloadTime: 1.5,
       }
     }

@@ -29,6 +29,7 @@ class BulletState {
   playerBullets(bullets, player, mousePosition, timeMod) {
     if (player.reload < 0 ) {
       player.reload = player.reloadTime;
+      // TODO: extract this
       let newBullet = _.sample(_.filter(bullets, bullet => !bullet.visible));
       if (!newBullet) {
         //  make a new bullet
@@ -48,7 +49,32 @@ class BulletState {
   }
 
   shipBullets(bullets, ships, timeMod) {
-
+    _.forEach(ships, (ship) => {
+      if (ship.visible) {
+        if (ship.reload < 0) {
+          ship.reload = ship.reloadTime;
+          let newBullet = _.sample(_.filter(bullets, bullet => !bullet.visible));
+          if (!newBullet) {
+            //  make a new bullet
+            const nameIndex = _.size(bullets);
+            newBullet = BulletPool.newBullet(nameIndex);
+            bullets[`bullet_${nameIndex}`] = newBullet;
+            // console.log('new Bullet');
+          } else {
+            newBullet.visible = true;
+            if (_.isFunction(ship.bulletDirection)) {
+              newBullet.direction = ship.bulletDirection();
+            } else {
+              newBullet.direction = ship.bulletDirection;
+            }
+            newBullet.xPos = ship.xPos + ship.width / 2;
+            newBullet.yPos = ship.yPos + ship.height / 2;
+          }
+        } else {
+          ship.reload -= timeMod;
+        }
+      }
+    });
   }
 
   updateBullets(bullets, player, ships, mousePosition, timeMod){
