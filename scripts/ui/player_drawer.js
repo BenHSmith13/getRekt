@@ -5,7 +5,7 @@ class PlayerDrawer {
   }
 
   drawPlayer(player, context) {
-    const asset = this.playerAssets.getAsset(player.state);
+    const asset = this.playerAssets.getAsset(player.state, player.animation);
     context.save();
     context.drawImage(
       asset.tile,

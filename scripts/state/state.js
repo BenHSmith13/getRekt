@@ -11,7 +11,7 @@ class State {
     this.bulletState = new BulletState(height, width);
     this.platformState = new PlatformState(height, width);
     this.shipState = new ShipState(height, width);
-    this.playerState = new PlayerState();
+    this.playerState = new PlayerState(height);
   }
 
   updateState(data, deltaTime, keys) {

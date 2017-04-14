@@ -12,11 +12,7 @@ class Player {
     this.jumpPower = 200;
     this.speed = 5;
 
-    this.state = 'run01';
+    this.state = 'running';
+    this.animation = 0;
   }
-
-  setState(state) {
-    this.state = state;
-  }
-
 }

@@ -38,7 +38,7 @@ class ShipState {
         const nameIndex = _.size(ships);
         newShip = ShipPool.newShip(nameIndex);
         ships[`ship_${nameIndex}`] = newShip;
-        console.log('new Ship');
+        // console.log('new Ship');
       } else {
         // TODO: clean me up
         const shipData = this.shipDirectory.getRandomShip();

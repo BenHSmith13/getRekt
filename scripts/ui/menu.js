@@ -50,7 +50,6 @@ class Menu {
 
   initListeners(callback) {
     addEventListener("keydown", (e) => {
-      console.log(e)
       callback({keyCode: e.keyCode, stringKey: e.key});
     }, false);
   }

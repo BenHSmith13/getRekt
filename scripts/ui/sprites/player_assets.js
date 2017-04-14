@@ -46,34 +46,52 @@ class PlayerAssets {
     return { tile: this.sprites, frameX: 385, frameY: 480, width: playerTileWidth - 6, height: playerTileWidth + 10 }
   }
 
-  getAsset(playerState) {
+  runningAssets(frame) {
+    switch (frame) {
+      case 0:
+        return this.run01();
+      case 1:
+        return this.run02();
+      case 2:
+        return this.run03();
+      case 3:
+        return this.run04();
+      default:
+        return this.standing();
+    }
+  }
+
+  jumpingAssets(frame) {
+    switch (frame) {
+      case 0:
+        return this.jump01();
+      case 2:
+        return this.jump02();
+      case 2:
+        return this.jump03();
+      case 3:
+        return this.jump04();
+      case 4:
+        return this.jump05();
+      case 5:
+        return this.jump06();
+      case 6:
+        return this.jump07();
+      case 7:
+        return this.jump08();
+      default:
+        return this.standing();
+    }
+  }
+
+  getAsset(playerState, animation) {
     switch (playerState) {
       case 'standing':
         return this.standing();
-      case 'run01':
-        return this.run01();
-      case 'run02':
-        return this.run02();
-      case 'run03':
-        return this.run03();
-      case 'run04':
-        return this.run04();
-      case 'jump01':
-        return this.jump01();
-      case 'jump02':
-        return this.jump02();
-      case 'jump03':
-        return this.jump03();
-      case 'jump04':
-        return this.jump04();
-      case 'jump05':
-        return this.jump05();
-      case 'jump06':
-        return this.jump06();
-      case 'jump07':
-        return this.jump07();
-      case 'jump08':
-        return this.jump08();
+      case 'running':
+        return this.runningAssets(animation);
+      case 'jumping':
+        return this.jumpingAssets(animation);
       default:
         return this.standing();
     }

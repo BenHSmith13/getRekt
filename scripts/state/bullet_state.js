@@ -34,7 +34,7 @@ class BulletState {
         const nameIndex = _.size(bullets);
         newBullet = GameObjects.newBullet(nameIndex);
         bullets[`bullet_${nameIndex}`] = newBullet;
-        console.log('new Bullet');
+        // console.log('new Bullet');
       } else {
         newBullet.attributes.visible = true;
         newBullet.attributes.direction = this.getMouseAngle(player, mousePosition);
