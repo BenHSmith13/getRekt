@@ -21,6 +21,7 @@ class State {
     this.shipState.updateShips(data.ships, timeMod);
     this.bulletState.updateBullets(data.bullets, data.player, data.ships, data.mousePosition, timeMod);
     this.playerState.updatePlayer(data.player, timeMod, keys);
+    this.collisions(data);
   }
 
   saveScore() {
@@ -60,7 +61,24 @@ class State {
     }
   }
 
-  collisions(ball, paddle, bricks, brickParticles) {
+  collisions(data) {
+    debugger
+
+    _.forEach(data.bullets, (bullet) => {
+      collid
+    })
   //  Collision detection here
   }
+}
+
+
+function isHitting(brick){
+
+  if (brick.x < baller.x + 5 &&
+    brick.x + brick.width > baller.x &&
+    brick.y < baller.y + 5 &&
+    brick.height + brick.y > baller.y) {
+    return true
+  }
+  return false;
 }

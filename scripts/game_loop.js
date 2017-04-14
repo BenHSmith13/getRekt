@@ -18,7 +18,7 @@ class GameLoop {
     this.sounds = null;
   }
 
-  backgroundMusic(){
+  backgroundMusic() {
 
   }
 

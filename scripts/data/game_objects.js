@@ -6,7 +6,7 @@ class GameObjects {
     const shipPool = new ShipPool();
     const bulletPool = new BulletPool();
     this.player = new Player();
-    
+
     this.platformPool = this.generatePlatforms(height, width);
     this.bulletPool = bulletPool.generateBullets();
     this.shipPool = shipPool.generateShips();
