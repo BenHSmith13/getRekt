@@ -39,6 +39,7 @@ class BulletState {
         // console.log('new Bullet');
       } else {
         newBullet.visible = true;
+        newBullet.owner = 'player';
         newBullet.direction = this.getMouseAngle(player, mousePosition);
         newBullet.xPos = player.xPos + player.width / 2;
         newBullet.yPos = player.yPos + player.height / 2;
@@ -67,6 +68,7 @@ class BulletState {
             } else {
               newBullet.direction = ship.bulletDirection;
             }
+            newBullet.owner = ship.type;
             newBullet.xPos = ship.xPos + ship.width / 2;
             newBullet.yPos = ship.yPos + ship.height / 2;
           }
