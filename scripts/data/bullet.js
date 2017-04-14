@@ -7,6 +7,7 @@ class Bullet {
     this.xPos = -10;
     this.yPos = -10;
     this.visible = false;
+    this.bulletSpeed = 90;
 
     this.direction = 0;
     this.owner = null;

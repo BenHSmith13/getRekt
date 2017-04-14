@@ -18,16 +18,10 @@ class GameLoop {
     this.sounds = null;
   }
 
-  backgroundMusic() {
-
-  }
-
   startGame(firstTime) {
     this.initTime = performance.now();
     this.canvas = new Canvas(this.height, this.width);
     this.canvas.create();
-    this.sounds = new GameSounds();
-    this.sounds.getSound('explosion').play()
 
     this.state = new State(this.height, this.width);
     this.menu = new Menu(() => this.restartGame());
@@ -116,14 +110,8 @@ class GameLoop {
     const timeLapse = newTime - this.initTime;
     const deltaTime = newTime - this.oldTime;
     this.oldTime = newTime;
+
     this.update(deltaTime);
-
-    // This is just example of how the sound works.
-    // We call this when ships explode for example.
-    if(timeLapse > 3000 && timeLapse < 5000){
-      this.sounds.getSound('explosion').play()
-    }
-
     this.render(timeLapse);
 
     window.requestAnimationFrame(this.gameLoop.bind(this));
