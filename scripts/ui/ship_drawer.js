@@ -7,7 +7,7 @@ class ShipDrawer {
   drawShip(ship, context) {
     context.save();
     context.drawImage(
-      this.shipAssets.getAsset(ship.attributes.name),
+      this.shipAssets.getAsset(ship.type),
       ship.xPos,
       ship.yPos,
       ship.width,
@@ -18,7 +18,7 @@ class ShipDrawer {
 
   drawShips(ships, context) {
     _.forEach(ships, (ship) => {
-      if (ship.attributes.visible) {
+      if (ship.visible) {
         this.drawShip(ship, context);
       }
     });

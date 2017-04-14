@@ -5,16 +5,7 @@ class ShipPool {
   }
 
   static newShip(index) {
-    return new GameObject(
-      `ship_${index}`,
-      5,
-      5,
-      -10,
-      -10,
-      {
-        visible: false,
-      }
-    );
+    return new Ship(`ship_${index}`);
   }
 
   generateShips() {
