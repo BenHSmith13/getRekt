@@ -62,23 +62,26 @@ class State {
   }
 
   collisions(data) {
-    debugger
-
     _.forEach(data.bullets, (bullet) => {
-      collid
+      _.forEach(data.ships, (ship) => {
+        if (bullet.visible && ship.visible) {
+          let hitting = this.isHitting(bullet, ship);
+          if (hitting){
+            bullet.visible = false;
+            ship.visible = false;
+          }
+        }
+      })
     })
-  //  Collision detection here
   }
-}
 
-
-function isHitting(brick){
-
-  if (brick.x < baller.x + 5 &&
-    brick.x + brick.width > baller.x &&
-    brick.y < baller.y + 5 &&
-    brick.height + brick.y > baller.y) {
-    return true
+  isHitting(bullet, ship){
+    if (bullet.xPos < ship.xPos + 5 &&
+      bullet.xPos + bullet.width > ship.xPos &&
+      bullet.yPos < ship.yPos + 5 &&
+      bullet.height + bullet.yPos > ship.yPos) {
+      return true
+    }
+    return false;
   }
-  return false;
 }
