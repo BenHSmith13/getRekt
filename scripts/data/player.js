@@ -9,7 +9,7 @@ class Player {
 
     this.jumping = false;
     this.velocity = 0;
-    this.jumpPower = 200;
+    this.jumpPower = 75;
     this.speed = 5;
 
     this.state = 'running';
