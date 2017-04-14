@@ -12,7 +12,7 @@ class PlayerDrawer {
       asset.frameX,
       asset.frameY,
       asset.width,
-      asset.width,
+      asset.height || asset.width,
       player.xPos,
       player.yPos,
       player.width,
