@@ -73,24 +73,44 @@ class State {
     })
 
     _.forEach(bulletsVis, (bullet) => {
+      let inBetweenCords = [];
+      const divider = 9;
+      let m = slopeModifier(bullet);
+      let increment = Math.abs((bullet.xPos - bullet.prevxPos)) / divider;
+
+      for(let i = 0; i < divider; i++){
+        let newX = bullet.prevxPos + (increment*i);
+        let newY = m(newX - bullet.xPos) + bullet.yPos
+        inBetweenCords.push({
+          xPos: newX,
+          yPos: newY
+        });
+      }
+
       _.forEach(shipsVis, (ship) => {
-        if (this.isHitting(bullet, ship)){
-          bullet.visible = false;
-          ship.hp -= 10;
-          if (ship.hp <= 0) {
-            this.sounds.getSound('explosion').play()
-            ship.visible = false;
+        _.forEach(inBetweenCords, (steps) => {
+          if (this.isHitting(bullet, steps.xPos, steps.yPos, ship)){
+            bullet.visible = false;
+            ship.hp -= 10;
+            if (ship.hp <= 0) {
+              this.sounds.getSound('explosion').play()
+              ship.visible = false;
+            }
           }
-        }
+        })
       })
     })
   }
 
-  isHitting(bullet, ship){
-    if (bullet.xPos < ship.xPos + 5 &&
-      bullet.xPos + bullet.width > ship.xPos &&
-      bullet.yPos < ship.yPos + 5 &&
-      bullet.height + bullet.yPos > ship.yPos) {
+  slopeModifier(b) {
+    return (b.prevyPos - b.yPos) / (b.prevxPos - b.xPos);
+  }
+
+  isHitting(bullet, xPos, yPos, ship){
+    if (xPos < ship.xPos + 5 &&
+      xPos + bullet.width > ship.xPos &&
+      yPos < ship.yPos + 5 &&
+      bullet.height + yPos > ship.yPos) {
       return true
     }
     return false;
