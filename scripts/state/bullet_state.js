@@ -3,8 +3,6 @@ class BulletState {
   constructor(height, width) {
     this.height = height;
     this.width = width;
-
-    this.bulletSpeed = 90;
   }
 
   getMouseAngle(player, mousePosition) {
@@ -16,8 +14,8 @@ class BulletState {
       if (bullet.visible) {
         bullet.prevXPos = bullet.xPos;
         bullet.prevYPos = bullet.yPos;
-        bullet.xPos = bullet.xPos + ( Utils.cos(bullet.direction) * this.bulletSpeed ) * timeMod;
-        bullet.yPos = bullet.yPos + ( Utils.sin(bullet.direction) * this.bulletSpeed ) * timeMod;
+        bullet.xPos = bullet.xPos + ( Utils.cos(bullet.direction) * bullet.bulletSpeed ) * timeMod;
+        bullet.yPos = bullet.yPos + ( Utils.sin(bullet.direction) * bullet.bulletSpeed ) * timeMod;
         if (bullet.xPos + bullet.width < 0
           || bullet.xPos - bullet.width > this.width
           || bullet.yPos + bullet.height < 0

@@ -8,6 +8,7 @@ class State {
     this.score = 0;
     this.lives = 3;
 
+    this.sounds = new GameSounds();
     this.bulletState = new BulletState(height, width);
     this.platformState = new PlatformState(height, width);
     this.shipState = new ShipState(height, width);
@@ -62,12 +63,22 @@ class State {
   }
 
   collisions(data) {
-    _.forEach(data.bullets, (bullet) => {
-      _.forEach(data.ships, (ship) => {
-        if (bullet.visible && ship.visible) {
-          let hitting = this.isHitting(bullet, ship);
-          if (hitting){
-            bullet.visible = false;
+    let bulletsVis = [];
+    _.forEach(data.bullets, (bullet)=>{
+      if(bullet.visible){bulletsVis.push(bullet)}
+    })
+    let shipsVis = [];
+    _.forEach(data.ships, (ship)=>{
+      if(ship.visible){shipsVis.push(ship)}
+    })
+
+    _.forEach(bulletsVis, (bullet) => {
+      _.forEach(shipsVis, (ship) => {
+        if (this.isHitting(bullet, ship)){
+          bullet.visible = false;
+          ship.hp -= 10;
+          if (ship.hp <= 0) {
+            this.sounds.getSound('explosion').play()
             ship.visible = false;
           }
         }
