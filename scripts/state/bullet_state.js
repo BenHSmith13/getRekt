@@ -14,6 +14,8 @@ class BulletState {
   moveBullets(bullets, timeMod) {
     _.forEach(bullets, (bullet) => {
       if (bullet.visible) {
+        bullet.prevXPos = bullet.xPos;
+        bullet.prevYPos = bullet.yPos;
         bullet.xPos = bullet.xPos + ( Utils.cos(bullet.direction) * this.bulletSpeed ) * timeMod;
         bullet.yPos = bullet.yPos + ( Utils.sin(bullet.direction) * this.bulletSpeed ) * timeMod;
         if (bullet.xPos + bullet.width < 0
@@ -42,7 +44,9 @@ class BulletState {
         newBullet.owner = 'player';
         newBullet.direction = this.getMouseAngle(player, mousePosition);
         newBullet.xPos = player.xPos + player.width / 2;
+        newBullet.prevXPos = player.xPos + player.width / 2;
         newBullet.yPos = player.yPos + player.height / 2;
+        newBullet.prevYPos = player.yPos + player.height / 2;
       }
     } else {
       player.reload -= timeMod;
@@ -69,7 +73,9 @@ class BulletState {
               newBullet.direction = ship.bulletDirection;
             }
             newBullet.owner = ship.type;
+            newBullet.prevXPos = ship.xPos + ship.width / 2;
             newBullet.xPos = ship.xPos + ship.width / 2;
+            newBullet.prevYPos = ship.yPos + ship.height / 2;
             newBullet.yPos = ship.yPos + ship.height / 2;
           }
         } else {
