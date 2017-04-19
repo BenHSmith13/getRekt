@@ -6,7 +6,7 @@ class ShipState {
     this.width = width;
     this.shipDirectory = new ShipDirectory();
 
-    this.spawnCounter = 40;
+    this.spawnCounter = 30;
     this.spawnRate = this.spawnCounter;
   }
 
@@ -53,7 +53,6 @@ class ShipState {
         newShip.bulletDirection = shipData.bulletDirection;
         newShip.reloadTime = shipData.reloadTime;
         newShip.reload = shipData.reloadTime;
-
       }
     } else {
       this.spawnCounter -= timeMod;

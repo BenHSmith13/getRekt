@@ -22,7 +22,7 @@ class State {
     this.shipState.updateShips(data.ships, timeMod);
     this.bulletState.updateBullets(data.bullets, data.player, data.ships, data.mousePosition, timeMod);
     this.playerState.updatePlayer(data.player, timeMod, keys);
-    this.collisions(data);
+    this.collisions(data.bullets, data.ships);
   }
 
   saveScore() {
@@ -62,25 +62,25 @@ class State {
     }
   }
 
-  collisions(data) {
+  collisions(allBullets, allShips) {
     let bulletsVis = [];
-    _.forEach(data.bullets, (bullet)=>{
-      if(bullet.visible){bulletsVis.push(bullet)}
+    _.forEach(allBullets, (bullet)=>{
+      if(bullet.visible && bullet.owner === 'player'){bulletsVis.push(bullet)}
     })
     let shipsVis = [];
-    _.forEach(data.ships, (ship)=>{
+    _.forEach(allShips, (ship)=>{
       if(ship.visible){shipsVis.push(ship)}
     })
 
     _.forEach(bulletsVis, (bullet) => {
       let inBetweenCords = [];
       const divider = 9;
-      let m = slopeModifier(bullet);
-      let increment = Math.abs((bullet.xPos - bullet.prevxPos)) / divider;
+      let m = this.slopeModifier(bullet);
+      let increment = Math.abs((bullet.xPos - bullet.prevXPos)) / divider;
 
       for(let i = 0; i < divider; i++){
-        let newX = bullet.prevxPos + (increment*i);
-        let newY = m(newX - bullet.xPos) + bullet.yPos
+        let newX = bullet.prevXPos + (increment*i);
+        let newY = m*(newX - bullet.xPos) + bullet.yPos;
         inBetweenCords.push({
           xPos: newX,
           yPos: newY
@@ -91,11 +91,15 @@ class State {
         _.forEach(inBetweenCords, (steps) => {
           if (this.isHitting(bullet, steps.xPos, steps.yPos, ship)){
             bullet.visible = false;
-            ship.hp -= 10;
+            ship.hp -= 5;
+
             if (ship.hp <= 0) {
+              this.sounds.getSound('explosion').currentTime = 0;
               this.sounds.getSound('explosion').play()
+              // do particle effects here?
               ship.visible = false;
             }
+            return false;
           }
         })
       })
@@ -103,13 +107,13 @@ class State {
   }
 
   slopeModifier(b) {
-    return (b.prevyPos - b.yPos) / (b.prevxPos - b.xPos);
+    return (b.prevYPos - b.yPos) / (b.prevXPos - b.xPos);
   }
 
   isHitting(bullet, xPos, yPos, ship){
-    if (xPos < ship.xPos + 5 &&
+    if (xPos < ship.xPos + ship.width &&
       xPos + bullet.width > ship.xPos &&
-      yPos < ship.yPos + 5 &&
+      yPos < ship.yPos + ship.height &&
       bullet.height + yPos > ship.yPos) {
       return true
     }

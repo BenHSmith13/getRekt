@@ -28,7 +28,7 @@ class ShipDirectory {
       return this.ships.gunShip;
     } else if (rand < 100) {
       return this.ships.necroCruiser;
-    } else if (rand < 110) {
+    } else if (rand <= 110) {
       return this.ships.crusader;
     }
   };
