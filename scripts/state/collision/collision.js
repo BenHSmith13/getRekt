@@ -57,5 +57,4 @@ class Collision {
     }
     return false;
   }
-
 }
