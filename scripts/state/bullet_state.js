@@ -27,6 +27,7 @@ class BulletState {
   }
 
   playerBullets(bullets, player, mousePosition, timeMod) {
+    if (player.hp <= 0) { return; }
     if (player.reload < 0 ) {
       player.reload = player.reloadTime;
       // TODO: extract this

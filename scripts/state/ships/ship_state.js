@@ -48,6 +48,7 @@ class ShipState {
         newShip.width = shipData.width;
         newShip.height = shipData.height;
         newShip.hp = shipData.hp;
+        newShip.totalHealth = shipData.totalHealth;
         newShip.speed = shipData.speed;
         newShip.bulletType = shipData.bulletType;
         newShip.bulletDirection = shipData.bulletDirection;

@@ -11,6 +11,7 @@ class Player {
     this.velocity = 0;
     this.jumpPower = 75;
     this.speed = 5;
+    this.hp = 100;
 
     this.state = 'running';
     this.animation = 0;

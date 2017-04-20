@@ -49,17 +49,6 @@ class GameLoop {
     return `${minutes}:${displaySeconds < 10 ? `0${displaySeconds}` : displaySeconds}`;
   }
 
-  displayLives() {
-    if (this.state.lives < 3) {
-      document.getElementById('life03').style.display = 'none';
-    }
-    if (this.state.lives < 2) {
-      document.getElementById('life02').style.display = 'none';
-    }
-    if (this.state.lives < 1) {
-      document.getElementById('life01').style.display = 'none';
-    }
-  }
 
   render(timelapse) {
     this.canvas.clear();
@@ -75,13 +64,12 @@ class GameLoop {
 
     if (this.menu.isActive) {
       this.canvas.drawMenu(this.menu);
-    } else if(this.state.lives <= 0) {
+    } else if(player.hp <= 0) {
       this.canvas.gameOver();
     } else if (this.state.countDown > 0) {
       this.canvas.countDown(parseInt(this.state.countDown) + 1);
     }
     document.getElementById('score').innerHTML = _.toString(this.state.score);
-    this.displayLives();
   }
 
   update(deltaTime) {
@@ -90,7 +78,7 @@ class GameLoop {
     //  Do nothing, handled by menu
     } else if (this.state.countDown > 0 && !_.isNaN(deltaTime)) {
       this.state.countDown -= deltaTime / 1000;
-    } else if (this.state.lives > 0) {
+    } else if (true) {
       const { player, platformPool, bulletPool, shipPool } = this.objects;
       const data = {
         player,

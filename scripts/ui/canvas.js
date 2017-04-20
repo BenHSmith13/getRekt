@@ -33,7 +33,9 @@ class Canvas {
     this.background.draw(this.context);
     this.shipDrawer.drawShips(data.ships, this.context);
     this.platformDrawer.drawPlatforms(data.platforms, this.context);
-    this.playerDrawer.drawPlayer(data.player, this.context);
+    if (data.player.hp > 0) {
+      this.playerDrawer.drawPlayer(data.player, this.context);
+    }
     this.bulletDrawer.drawBullets(data.bullets, this.context);
   }
 
