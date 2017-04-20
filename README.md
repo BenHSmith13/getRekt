@@ -21,7 +21,7 @@ http://soundbible.com/1986-Bomb-Exploding.html
 * Sound and Music [Call]
 * AI Enemies [?]
 * Tile Rendering [Smith]
-* Collision Detection [Smith] [Call]
+* Collision Detection [Call]
 * Over the Top Weapons [Smith] [Call]
 * Physics [Call]
 * Procedural Generation [Smith]

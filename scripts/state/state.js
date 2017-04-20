@@ -13,6 +13,7 @@ class State {
     this.platformState = new PlatformState(height, width);
     this.shipState = new ShipState(height, width);
     this.playerState = new PlayerState(height);
+    this.collider = new Collision();
   }
 
   updateState(data, deltaTime, keys) {
@@ -22,7 +23,7 @@ class State {
     this.shipState.updateShips(data.ships, timeMod);
     this.bulletState.updateBullets(data.bullets, data.player, data.ships, data.mousePosition, timeMod);
     this.playerState.updatePlayer(data.player, timeMod, keys);
-    this.collisions(data);
+    this.collider.collisions(data.bullets, data.ships, this.sounds);
   }
 
   saveScore() {
@@ -60,39 +61,5 @@ class State {
         this.score += 1;
         break;
     }
-  }
-
-  collisions(data) {
-    let bulletsVis = [];
-    _.forEach(data.bullets, (bullet)=>{
-      if(bullet.visible){bulletsVis.push(bullet)}
-    })
-    let shipsVis = [];
-    _.forEach(data.ships, (ship)=>{
-      if(ship.visible){shipsVis.push(ship)}
-    })
-
-    _.forEach(bulletsVis, (bullet) => {
-      _.forEach(shipsVis, (ship) => {
-        if (this.isHitting(bullet, ship)){
-          bullet.visible = false;
-          ship.hp -= 10;
-          if (ship.hp <= 0) {
-            this.sounds.getSound('explosion').play()
-            ship.visible = false;
-          }
-        }
-      })
-    })
-  }
-
-  isHitting(bullet, ship){
-    if (bullet.xPos < ship.xPos + 5 &&
-      bullet.xPos + bullet.width > ship.xPos &&
-      bullet.yPos < ship.yPos + 5 &&
-      bullet.height + bullet.yPos > ship.yPos) {
-      return true
-    }
-    return false;
   }
 }
