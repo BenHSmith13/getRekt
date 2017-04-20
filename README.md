@@ -7,6 +7,8 @@ Assets
 https://opengameart.org/content/dirt-platformer-tiles
 ### Ships
 https://opengameart.org/content/spaceships-top-down
+### Lasers
+https://opengameart.org/content/lasers-and-beams
 
 ### Explosion Sounds
 http://soundbible.com/1986-Bomb-Exploding.html

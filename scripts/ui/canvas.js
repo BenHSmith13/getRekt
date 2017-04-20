@@ -16,6 +16,7 @@ class Canvas {
     this.shipDrawer = new ShipDrawer();
     this.platformDrawer = new PlatformDrawer(height, width, this.tileAssets);
     this.playerDrawer = new PlayerDrawer();
+    this.bulletDrawer = new BulletDrawer();
   }
 
   create() {
@@ -33,6 +34,7 @@ class Canvas {
     this.shipDrawer.drawShips(data.ships, this.context);
     this.platformDrawer.drawPlatforms(data.platforms, this.context);
     this.playerDrawer.drawPlayer(data.player, this.context);
+    this.bulletDrawer.drawBullets(data.bullets, this.context);
   }
 
   drawRect(object) {
@@ -58,14 +60,6 @@ class Canvas {
     this.context.fill();
     this.context.stroke();
     this.context.restore();
-  }
-
-  drawBullets(bullets) {
-    _.forEach(bullets, (bullet) => {
-      if (bullet.visible) {
-        this.drawCircle(bullet);
-      }
-    });
   }
 
   countDown(n) {

@@ -40,11 +40,13 @@ class BulletState {
       } else {
         newBullet.visible = true;
         newBullet.owner = 'player';
+        newBullet.height = 30;
+        newBullet.width = 15;
         newBullet.direction = this.getMouseAngle(player, mousePosition);
         newBullet.xPos = player.xPos + player.width / 2;
-        newBullet.prevXPos = player.xPos + player.width / 2;
-        newBullet.yPos = player.yPos + player.height / 2;
-        newBullet.prevYPos = player.yPos + player.height / 2;
+        newBullet.yPos = player.yPos + player.height / 2 - 30;
+        newBullet.prevXPos = newBullet.xPos;
+        newBullet.prevYPos = newBullet.yPos;
       }
     } else {
       player.reload -= timeMod;

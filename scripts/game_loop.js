@@ -63,17 +63,15 @@ class GameLoop {
 
   render(timelapse) {
     this.canvas.clear();
-    // TODO: move all drawing into this draw function
+
     const { player, platformPool, bulletPool, shipPool } = this.objects;
     const data = {
       ships: shipPool,
       platforms: platformPool,
-      player
+      player,
+      bullets: bulletPool,
     };
     this.canvas.draw(data);
-
-    // TODO: Make this cleaner, canvas needs to be a system
-    this.canvas.drawBullets(this.objects.bulletPool);
 
     if (this.menu.isActive) {
       this.canvas.drawMenu(this.menu);
