@@ -81,14 +81,16 @@ class GameLoop {
     } else if (true) {
       const { player, platformPool, bulletPool, shipPool } = this.objects;
       const data = {
+        keys: this.keys,
         player,
+        deltaTime,
         platforms: platformPool,
         bullets: bulletPool,
         ships: shipPool,
         mousePosition: this.canvas.mousePosition,
       };
 
-      this.state.updateState(data, deltaTime, this.keys);
+      this.state.updateState(data);
     }
   }
 

@@ -15,13 +15,13 @@ class State {
     this.collider = new Collision();
   }
 
-  updateState(data, deltaTime, keys) {
+  updateState(data) {
   //  This is going to be the 'do all the things' function;
-    const timeMod = deltaTime ? deltaTime / 100 : 0;
+    const timeMod = data.deltaTime ? data.deltaTime / 100 : 0;
     this.platformState.updatePlatforms(data.platforms, timeMod);
     this.shipState.updateShips(data.ships, timeMod);
     this.bulletState.updateBullets(data.bullets, data.player, data.ships, data.mousePosition, timeMod);
-    this.playerState.updatePlayer(data.player, timeMod, keys);
+    this.playerState.updatePlayer(data.player, timeMod, data.keys);
     this.collider.collisions(data.player, data.bullets, data.ships, this.sounds, score => this.updateScore(score));
     this.saveScore(data.player);
   }

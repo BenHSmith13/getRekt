@@ -17,11 +17,12 @@ class Collision {
     _.forEach(allShips, (ship)=>{
       if(ship.visible){ships.push(ship)}
     });
-    this.playerKillsAliens(player, playerBullets, ships, sounds, updateScore);
+
+    this.playerKillsAliens(playerBullets, ships, sounds, updateScore);
     this.playerShot(alienBullets, player, sounds);
   }
 
-  playerKillsAliens(player, playerBullets, ships, sounds, updateScore) {
+  playerKillsAliens(playerBullets, ships, sounds, updateScore) {
     _.forEach(playerBullets, (bullet) => {
       let rayCasts = this.rayCast(bullet);
       _.forEach(ships, (ship) => {
@@ -31,9 +32,7 @@ class Collision {
             ship.hp -= 5;
 
             if (ship.hp <= 0) {
-              if(player.hp >= 0){
-                updateScore(ship.totalHealth);
-              }
+              updateScore(ship.totalHealth);
               sounds.getSound('explosion').currentTime = 0;
               sounds.getSound('explosion').play();
               // do particle effects here?
