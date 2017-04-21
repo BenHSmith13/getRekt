@@ -78,7 +78,7 @@ class GameLoop {
     //  Do nothing, handled by menu
     } else if (this.state.countDown > 0 && !_.isNaN(deltaTime)) {
       this.state.countDown -= deltaTime / 1000;
-    } else if (true) {
+    } else {
       const { player, platformPool, bulletPool, shipPool } = this.objects;
       const data = {
         keys: this.keys,

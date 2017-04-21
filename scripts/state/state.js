@@ -8,6 +8,7 @@ class State {
     this.score = 0;
 
     this.sounds = new GameSounds();
+    this.soundPlaying = false;
     this.bulletState = new BulletState(height, width);
     this.platformState = new PlatformState(height, width);
     this.shipState = new ShipState(height, width);
@@ -16,7 +17,10 @@ class State {
   }
 
   updateState(data) {
-  //  This is going to be the 'do all the things' function;
+    if(!this.soundPlaying){
+      // this.sounds.getSound('background').play();
+      this.soundPlaying = true;
+    }
     const timeMod = data.deltaTime ? data.deltaTime / 100 : 0;
     this.platformState.updatePlatforms(data.platforms, timeMod);
     this.shipState.updateShips(data.ships, timeMod);

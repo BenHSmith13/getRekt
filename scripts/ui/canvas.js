@@ -35,6 +35,7 @@ class Canvas {
     this.platformDrawer.drawPlatforms(data.platforms, this.context);
     if (data.player.hp > 0) {
       this.playerDrawer.drawPlayer(data.player, this.context);
+      this.playerDrawer.drawPlayerHealth(data.player, object => this.drawRect(object), this.context);
     }
     this.bulletDrawer.drawBullets(data.bullets, this.context);
   }

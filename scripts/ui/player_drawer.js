@@ -20,4 +20,18 @@ class PlayerDrawer {
     );
     context.restore();
   }
+
+  drawPlayerHealth(player, drawRect, context) {
+    const precentHealth = player.hp / player.totalHealth
+    const healthBar = {
+      attributes: {
+        color: 'red',
+      },
+      xPos: 25,
+      yPos: 560,
+      width: 200*precentHealth,
+      height: 25,
+    };
+    drawRect(healthBar);
+  }
 }
