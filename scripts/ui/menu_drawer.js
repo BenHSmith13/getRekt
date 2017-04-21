@@ -59,10 +59,6 @@ class MenuDrawer {
     context.restore();
   }
 
-  reconfigControls() {
-    node.innerHTML = `Reconfigured Jump To: '${this.newJumper}'`
-  }
-
   reconfigure(menu, context, configs) {
     context.save();
     context.fillStyle = "white";
@@ -73,8 +69,10 @@ class MenuDrawer {
     context.fillText(`Jump:  'space bar'`, this.width/2, 150);
 
     context.font = "30px 'Press Start 2P'";
-    context.fillText('Choose keyboard key and then hit enter', this.width/2, 250);
-    context.font = "30px 'Press Start 2P'";
+    context.fillText('Choose keyboard key', this.width/2, 300);
+    context.fillText('and then hit enter', this.width/2, 350);
+    context.font = "20px 'Press Start 2P'";
+    context.fillText(`New Jump:  '${configs}'`, this.width/2, 425);
     context.restore();
   }
 
