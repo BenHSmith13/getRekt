@@ -19,6 +19,7 @@ class Canvas {
     this.bulletDrawer = new BulletDrawer();
     this.particleDrawer = new ParticleDrawer();
     this.menuDrawer = new MenuDrawer(height, width);
+    this.powerUpDrawer = new PowerUpDrawer();
   }
 
   create() {
@@ -43,6 +44,7 @@ class Canvas {
     this.particleDrawer.drawParticles(data.particles, this.context);
     this.drawScore(data.score);
     this.menuDrawer.drawMenu(data.menu, this.context, data.configs);
+    this.powerUpDrawer.drawPowerUps(data.powerUps, this.context);
   }
 
   drawScore(score) {

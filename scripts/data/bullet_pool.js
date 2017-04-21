@@ -1,4 +1,4 @@
-// TODO
+
 class BulletPool {
   constructor() {
     this.initialBullets = 50;

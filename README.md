@@ -17,7 +17,9 @@ http://soundbible.com/1986-Bomb-Exploding.html
 http://freemusicarchive.org/music/Jono_Bacon/
 
 #### Game Play [DONE]
-
+* Jumping/platforming [DONE]
+* Shooting at mouse pointer [TODO]
+* Ships spawn and fire [DONE]
 #### Menuing
 * New Game [DONE]
 * High Scores [DONE]

@@ -13,6 +13,7 @@ class State {
     this.playerState = new PlayerState(height);
     this.particleState = new ParticleState(particles);
     this.collider = new Collision();
+    this.powerUps = new PowerUps(height, width);
   }
 
   reset() {
@@ -37,6 +38,7 @@ class State {
       this.particleState
     );
     this.particleState.updateParticles(data.bullets, data.ships, data.player, timeMod);
+    this.powerUps.updatePowerUps(timeMod);
   }
 
   updateScore(score) {

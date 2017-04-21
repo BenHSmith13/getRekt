@@ -56,13 +56,14 @@ class GameLoop {
       particles,
       menu: this.menu,
       score: this.state.score,
+      powerUps: this.state.powerUps.powerUps,
       configs: this.menu.getConfig()
     };
     this.canvas.draw(data);
   }
 
   update(deltaTime) {
-    const { player, platformPool, bulletPool, shipPool } = this.objects;
+    const { player, platformPool, bulletPool, shipPool, powerUps } = this.objects;
 
     if (player.hp <= 0 && this.menu.screen === null) { this.menu.screen = 'gameOver'; }
 
@@ -81,6 +82,7 @@ class GameLoop {
         ships: shipPool,
         mousePosition: this.canvas.mousePosition,
         sounds: this.sounds,
+        powerUps,
       };
 
       this.state.updateState(data);
