@@ -14,49 +14,65 @@ class PlayerState {
       this.stride = this.strideTime;
       player.animation = player.animation >= 3 ? 0 : player.animation + 1;
     }
-    this.fallCollision(player, platforms, timeMod)
+    this.fallCollision(player, platforms, timeMod, true)
   }
 
   jump(player, timeMod, platforms) {
     // update gravity
     if (player.velocity < 0) {
       player.velocity = player.velocity + this.gravityModifier;
+      player.yPos += (player.velocity * timeMod);
     } else {
       // fall slower than you jump
       player.velocity += this.gravityModifier;
+      this.fallCollision(player, platforms, timeMod, false)
     }
-    player.yPos += (player.velocity * timeMod);
-
-    this.fallCollision(player, platforms, timeMod)
   }
 
-  fallCollision(player, platforms, timeMod){
-    // If no blocks then just along bottom
-    if (player.yPos + player.height >= this.bottom) {
-      player.yPos = this.bottom - player.height;
-      player.state = 'running';
-      player.velocity = 0;
-    } else {
-      // let nearPlatforms = [];
-      //  _.forEach(platforms, plat => {
-      //   if(plat.xPos > 255 && plat.xPos < 375) {
-      //     nearPlatforms.push(plat);
-      //   }
-      // });
-      // If platform to land on??
+  fallCollision(player, platforms, timeMod, running = null){
+    if (running){
+      const playerPosition = player.xPos + player.width / 2;
+      const platsUnderFoot = this.platformUnderFoot(playerPosition, platforms);
 
-      _.forEach(platforms, np => {
-        if(player.xPos + player.width >= np.xPos
-          && player.xPos <= np.xPos + np.width
-          && player.yPos + player.height >= np.yPos)
-        {
-          player.yPos = np.yPos - player.height;
-          player.state = 'running';
-          player.velocity = 0;
+      const myBlock = _.find(platsUnderFoot, platform => {
+        if (platform.yPos == player.yPos + 40){
+          return platform;
         }
       })
-      // player.velocity += this.gravityModifier;
+      if(!myBlock){
+        player.state = 'jumping';
+      }
+    } else {
+      // Jumping
+      // If no blocks then just along bottom
+      if (player.yPos + player.height >= this.bottom) {
+        player.yPos = this.bottom - player.height;
+        player.state = 'running';
+        player.velocity = 0;
+      }
+      else {
+        // If platform to land on??
+        _.forEach(platforms, platform => {
+          if(player.xPos + player.width >= platform.xPos
+            && player.xPos <= platform.xPos + platform.width
+            && player.yPos + player.height >= platform.yPos)
+          {
+            player.yPos = platform.yPos - player.height;
+            player.state = 'running';
+            player.velocity = 0;
+          }
+        })
+      }
+      player.yPos += (player.velocity * timeMod);
     }
+  }
+
+  platformUnderFoot(playerPosition, platforms) {
+    return _.filter(platforms, plat => {
+      if(playerPosition > plat.xPos && playerPosition < plat.xPos + plat.width) {
+        return plat
+      }
+    });
   }
 
   updatePlayer(player, timeMod, keys, platforms) {
