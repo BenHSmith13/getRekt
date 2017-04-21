@@ -222,7 +222,7 @@ class Menu {
   }
 
   listenForHighScores() {
-    const scores = firebase.database().ref('scores/').orderByChild('score').limitToLast(10);
+    const scores = firebase.database().ref('scores/').orderByChild('score').limitToLast(7);
     scores.on('child_added', (data) => {
       this.highScores.push(data.val());
     });
