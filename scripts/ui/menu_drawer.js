@@ -60,7 +60,18 @@ class MenuDrawer {
   }
 
   credits(menu, context) {
+    context.fillStyle = "white";
+    context.textAlign = "center";
+    context.font = "50px 'Press Start 2P'";
+    context.fillText('Developed By', this.width/2, 75);
+    context.font = "30px 'Press Start 2P'";
+    context.fillText(`Ben Call  &  Ben Smith`, this.width/2, 150);
 
+    context.font = "50px 'Press Start 2P'";
+    context.fillText('Assets By', this.width/2, 250);
+    context.font = "30px 'Press Start 2P'";
+    context.fillText(`//TODO: Asset credits`, this.width/2, 300);
+    context.restore();
   }
 
   drawMenu(menu, context) {
