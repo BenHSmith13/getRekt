@@ -26,7 +26,7 @@ class State {
     this.platformState.updatePlatforms(data.platforms, timeMod);
     this.shipState.updateShips(data.ships, timeMod);
     this.bulletState.updateBullets(data.bullets, data.player, data.ships, data.mousePosition, timeMod);
-    this.playerState.updatePlayer(data.player, timeMod, data.keys);
+    this.playerState.updatePlayer(data.player, timeMod, data.keys, data.platforms);
     this.collider.collisions(
       data.player,
       data.bullets,

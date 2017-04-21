@@ -92,14 +92,6 @@ class Canvas {
     this.context.restore();
   }
 
-  drawParticles(particles) {
-    _.forEach(particles, (particle) => {
-      if (particle.attributes.visible) {
-        this.drawRect(particle)
-      }
-    });
-  }
-
   rotateObject(object){
     this.context.translate(object.xPos, object.yPos);
     this.context.rotate(Utils.degToRad(object.attributes.angle));

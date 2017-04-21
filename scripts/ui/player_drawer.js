@@ -29,7 +29,7 @@ class PlayerDrawer {
       },
       xPos: 25,
       yPos: 560,
-      width: 200*precentHealth,
+      width: 250*precentHealth,
       height: 25,
     };
     drawRect(healthBar);

@@ -28,14 +28,28 @@ class PlayerState {
 
     // stop at bottom of screen
     // will use collision detection at some point
+    this.fallCollision(player)
+  }
+
+  fallCollision(player){
+    // If no blocks then just along bottom
     if (player.yPos + player.height >= this.bottom) {
       player.yPos = this.bottom - player.height;
       player.state = 'running';
       player.velocity = 0;
+    } else {
+      let nearPlatforms = _.map(this.platforms, plat => {
+        if(plat.xPos > 310 && plat.xPos < 350) {
+          return plat;
+        }
+      });
+      // If platform to land on??
+      debugger
     }
   }
 
-  updatePlayer(player, timeMod, keys) {
+  updatePlayer(player, timeMod, keys, platforms) {
+    this.platforms = platforms;
     // console.log(player.state);
     if (player.state === 'running') {
       this.run(player, timeMod);
