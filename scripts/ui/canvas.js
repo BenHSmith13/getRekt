@@ -57,16 +57,6 @@ class Canvas {
     this.context.restore();
   }
 
-  drawCircle(object) {
-    this.context.save();
-    this.context.beginPath();
-    this.context.arc(object.xPos, object.yPos, object.width, 0, 2*Math.PI);
-    this.context.fillStyle = _.get(object, 'attributes.color', 'blue');
-    this.context.fill();
-    this.context.stroke();
-    this.context.restore();
-  }
-
   countDown(n) {
     this.context.save();
     this.context.font = "300px 'Press Start 2P'";

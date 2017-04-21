@@ -40,18 +40,20 @@ class State {
   }
 
   saveScore(player) {
+    // This is not a good place for this it needs to happen once on like a button click or something
     // if(player.hp <= 0){
     //   // TODO, save the score to server
     // }
-
-    // OLD stuff
-    // const scores = JSON.parse(localStorage.getItem('scores'));
-    // if (scores) {
-    //   scores.push(this.score);
-    //   localStorage.setItem('scores', JSON.stringify(scores));
-    // } else {
-    //   localStorage.setItem('scores', JSON.stringify([this.score]))
-    // }
+    // firebase.database().ref('scores/' + userId).set({
+    //   username: name,
+    //   email: email,
+    //   profile_picture : imageUrl
+    // });
+    // // Create a new post reference with an auto-generated id
+    // var newPostRef = postListRef.push();
+    // newPostRef.set({
+    //   // ...
+    // });
   }
 
   updateScore(score) {
