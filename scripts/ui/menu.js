@@ -37,43 +37,47 @@ class Menu {
     this.screen = 'countDown';
   }
 
+  getConfig() {
+    return this.newJumper;
+  }
+
   menuActions(codes) {
-    if (this.reconfigureVisible && codes.keyCode !== keyMap.enter) {
+    if (codes.keyCode !== keyMap.enter && this.screen === 'reconfigure') {
       if(codes.stringKey == " "){
         codes.stringKey = 'space';
       }
-
       localStorage.setItem('reconfigured', codes.stringKey);
       this.newJumper = codes.stringKey;
-      let node = document.getElementById('currentBinding');
-      node.innerHTML = `Reconfigured Jump To: '${codes.stringKey}'`
-    }
+    } else if (this.screen === 'reconfigure' && codes.keyCode === keyMap.enter){
+      this.screen = 'menu';
+    } else {
 
-    switch (codes.keyCode) {
-      case keyMap.up:
-        this.arrowUp();
-        break;
-      case keyMap.down:
-        this.arrowDown();
-        break;
-      case keyMap.left:
-        this.arrowLeft();
-        break;
-      case keyMap.right:
-        this.arrowRight();
-        break;
-      case keyMap.escape:
-        if (this.screen !== 'menu'){
-          this.screen = 'menu';
-        } else {
-          this.screen = null;
-        }
-        break;
-      case keyMap.enter:
-        this.select();
-        break;
-      default:
-        break;
+      switch (codes.keyCode) {
+        case keyMap.up:
+          this.arrowUp();
+          break;
+        case keyMap.down:
+          this.arrowDown();
+          break;
+        case keyMap.left:
+          this.arrowLeft();
+          break;
+        case keyMap.right:
+          this.arrowRight();
+          break;
+        case keyMap.escape:
+          if (this.screen !== 'menu'){
+            this.screen = 'menu';
+          } else {
+            this.screen = null;
+          }
+          break;
+        case keyMap.enter:
+          this.select();
+          break;
+        default:
+          break;
+      }
     }
   }
 
@@ -173,19 +177,6 @@ class Menu {
     }
   }
 
-  showCorrectElements() {
-    document.getElementById('highScores').style.display = this.scoresVisible ? 'block' : 'none';
-    document.getElementById('credits').style.display = this.creditsVisible ? 'block' : 'none';
-    document.getElementById('reconfigure').style.display = this.reconfigureVisible ? 'block' : 'none';
-  }
-
-  reconfigControls() {
-    this.reconfigureVisible = !this.reconfigureVisible;
-    this.showCorrectElements();
-    let node = document.getElementById('currentBinding');
-    node.innerHTML = `Reconfigured Jump To: '${this.newJumper}'`
-  }
-
   changeMenu() {
     switch (this.currentItem) {
       case this.menuItems.newGame:
@@ -199,7 +190,7 @@ class Menu {
         this.screen = 'credits';
         break;
       case this.menuItems.reconfigure:
-        this.reconfigControls();
+        this.screen = 'reconfigure';
         break;
       default:
         break;

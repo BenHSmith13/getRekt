@@ -56,6 +56,7 @@ class GameLoop {
       particles,
       menu: this.menu,
       score: this.state.score,
+      configs: this.menu.getConfig()
     };
     this.canvas.draw(data);
   }

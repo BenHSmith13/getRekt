@@ -16,8 +16,6 @@ https://opengameart.org/content/explosion-sprite
 http://soundbible.com/1986-Bomb-Exploding.html
 http://freemusicarchive.org/music/Jono_Bacon/
 
-
-## Requirements
 #### Game Play [DONE]
 
 #### Menuing
@@ -57,4 +55,5 @@ http://freemusicarchive.org/music/Jono_Bacon/
 #### Animation [DONE]
 * Player sprite for running and jumping [DONE]  --may need to clean up jump animation
 * Ships (some are backwards) [TODO]
+>>>>>>> 123aaa1dce4897412e56a6c0a4a38b142a3a6c1a
 

@@ -59,6 +59,23 @@ class MenuDrawer {
     context.restore();
   }
 
+  reconfigure(menu, context, configs) {
+    context.save();
+    context.fillStyle = "white";
+    context.textAlign = "center";
+    context.font = "30px 'Press Start 2P'";
+    context.fillText('Default Key Controls', this.width / 2, 75);
+    context.font = "20px 'Press Start 2P'";
+    context.fillText(`Jump:  'space bar'`, this.width/2, 150);
+
+    context.font = "30px 'Press Start 2P'";
+    context.fillText('Choose keyboard key', this.width/2, 300);
+    context.fillText('and then hit enter', this.width/2, 350);
+    context.font = "20px 'Press Start 2P'";
+    context.fillText(`New Jump:  '${configs}'`, this.width/2, 425);
+    context.restore();
+  }
+
   credits(menu, context) {
     context.save();
     context.fillStyle = "white";
@@ -75,7 +92,7 @@ class MenuDrawer {
     context.restore();
   }
 
-  drawMenu(menu, context) {
+  drawMenu(menu, context, configs) {
     switch (menu.screen) {
       case 'menu':
         this.menuScreen(menu, context);
@@ -95,6 +112,10 @@ class MenuDrawer {
 
       case 'credits':
         this.credits(menu, context);
+        break;
+
+      case 'reconfigure':
+        this.reconfigure(menu, context, configs);
         break;
 
       case 'none':
