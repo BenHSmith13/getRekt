@@ -38,6 +38,8 @@ class Collision {
               sounds.getSound('explosion').play();
               // do particle effects here?
               ship.visible = false;
+            } else {
+              sounds.playExplosion06();
             }
             return false;
           }

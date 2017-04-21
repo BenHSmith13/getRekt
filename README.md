@@ -19,7 +19,7 @@ http://freemusicarchive.org/music/Jono_Bacon/
 
 ## Requirements
 * Game Play [Both]
-* Menuing [Both] Done?
+* Menuing [Both] Done
 * Reconfigurable Controls [Call]
 * Particle Effects [Smith]
 * Server Based High Scores [Smith]
