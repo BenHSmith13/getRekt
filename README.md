@@ -14,6 +14,7 @@ https://opengameart.org/content/explosion-sprite
 
 ### Explosion Sounds
 http://soundbible.com/1986-Bomb-Exploding.html
+http://freemusicarchive.org/music/Jono_Bacon/
 
 
 ## Requirements
