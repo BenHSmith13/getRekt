@@ -59,15 +59,6 @@ class Canvas {
     this.context.restore();
   }
 
-  countDown(n) {
-    this.context.save();
-    this.context.font = "300px 'Press Start 2P'";
-    this.context.fillStyle = "white";
-    this.context.textAlign = "center";
-    this.context.fillText(n, this.canvas.width/2, this.canvas.height - this.canvas.height / 4);
-    this.context.restore();
-  }
-
   clear() {
     this.context.save();
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);

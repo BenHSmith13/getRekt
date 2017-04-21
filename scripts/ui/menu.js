@@ -1,7 +1,7 @@
 
 class Menu {
-  constructor(resetGame) {
-    this.isActive = false;
+  constructor(resetGame, state) {
+    this.gameState = state;
     this.screen = 'menu';
     this.currentItem = null;
     this.menuItems = {
@@ -21,6 +21,8 @@ class Menu {
 
     this.highScores = [];
     this.listenForHighScores();
+
+    this.countDown = 3;
 
     this.scoresVisible = false;
     this.creditsVisible = false;
@@ -206,7 +208,7 @@ class Menu {
     var newPostRef = database.push();
     newPostRef.set({
       name: _.map(this.gameOverItems.initials, index => this.alphabet[index]).join(''),
-      score: 10,
+      score: this.gameState.score,
     });
     this.screen = 'highScores';
   }

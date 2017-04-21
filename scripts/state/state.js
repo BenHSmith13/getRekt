@@ -4,7 +4,6 @@ class State {
     this.height = height;
     this.width = width;
 
-    this.countDown = 3;
     this.score = 0;
 
     this.sounds = new GameSounds();
@@ -36,24 +35,6 @@ class State {
       this.particleState
     );
     this.particleState.updateParticles(data.bullets, data.ships, data.player, timeMod);
-    this.saveScore(data.player);
-  }
-
-  saveScore(player) {
-    // This is not a good place for this it needs to happen once on like a button click or something
-    // if(player.hp <= 0){
-    //   // TODO, save the score to server
-    // }
-    // firebase.database().ref('scores/' + userId).set({
-    //   username: name,
-    //   email: email,
-    //   profile_picture : imageUrl
-    // });
-    // // Create a new post reference with an auto-generated id
-    // var newPostRef = postListRef.push();
-    // newPostRef.set({
-    //   // ...
-    // });
   }
 
   updateScore(score) {

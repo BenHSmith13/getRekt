@@ -20,6 +20,15 @@ class MenuDrawer {
     context.restore();
   }
 
+  countDown(menu, context) {
+    context.save();
+    context.font = "300px 'Press Start 2P'";
+    context.fillStyle = "white";
+    context.textAlign = "center";
+    context.fillText(parseInt(menu.countDown) + 1, this.width/2, this.height - this.height / 4);
+    context.restore();
+  }
+
   gameOver(menu, context) {
     context.save();
     context.font = "75px 'Press Start 2P'";
@@ -39,12 +48,13 @@ class MenuDrawer {
   }
 
   highScores(menu, context) {
+    const scores = _.orderBy(menu.highScores, 'score', 'desc');
     context.save();
     context.font = "50px 'Press Start 2P'";
     context.fillStyle = "white";
     context.textAlign = "center";
-    _.forEach(menu.highScores, (score, index) => {
-      context.fillText(`${score.name}       ${score.score}`, this.width/2, 75 + 75 * index);
+    _.forEach(scores, (score, index) => {
+      context.fillText(`${score.name}      ${score.score}`, this.width/2, 75 + 75 * index);
     });
     context.restore();
   }
@@ -57,6 +67,10 @@ class MenuDrawer {
     switch (menu.screen) {
       case 'menu':
         this.menuScreen(menu, context);
+        break;
+
+      case 'countDown':
+        this.countDown(menu, context);
         break;
 
       case 'highScores':

@@ -13,7 +13,6 @@ class GameLoop {
     this.menu = null;
     this.keys = null;
     this.objects = null;
-    this.character = null;
     this.score = 0;
     this.sounds = null;
   }
@@ -25,7 +24,7 @@ class GameLoop {
 
     this.objects = new GameObjects(this.height, this.width);
     this.state = new State(this.height, this.width, this.objects.particles);
-    this.menu = new Menu(() => this.restartGame());
+    this.menu = new Menu(() => this.restartGame(), this.state);
     if (firstTime) { this.menu.isActive = true; }
     // Initialize other game objects
 
@@ -36,9 +35,9 @@ class GameLoop {
   }
 
   restartGame() {
-    // Restart stuff
     this.initTime = performance.now();
-    this.menu.isActive = false;
+    this.menu.countDown = 3;
+    this.menu.screen = 'countDown';
   //  TODO: reset all other values
   }
 
@@ -56,22 +55,20 @@ class GameLoop {
     };
     this.canvas.draw(data);
 
-    // if(player.hp <= 0) {
-    //   this.canvas.gameOver();
-    // } else if (this.state.countDown > 0) {
-    //   this.canvas.countDown(parseInt(this.state.countDown) + 1);
-    // }
     document.getElementById('score').innerHTML = _.toString(this.state.score);
   }
 
   update(deltaTime) {
+    const { player, platformPool, bulletPool, shipPool } = this.objects;
 
-    if (this.menu.isActive) {
+    if (player.hp <= 0 && this.menu.screen === null) { this.menu.screen = 'gameOver'; }
+
+    if (this.menu.screen !== 'countDown' && this.menu.screen !== null) {
     //  Do nothing, handled by menu
-    } else if (this.state.countDown > 0 && !_.isNaN(deltaTime)) {
-      this.state.countDown -= deltaTime / 1000;
+    } else if (this.menu.countDown > 0 && !_.isNaN(deltaTime)) {
+      this.menu.countDown -= deltaTime / 1000;
     } else {
-      const { player, platformPool, bulletPool, shipPool } = this.objects;
+      if (this.menu.screen === 'countDown') { this.menu.screen = null; }
       const data = {
         keys: this.keys,
         player,
