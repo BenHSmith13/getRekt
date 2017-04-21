@@ -19,7 +19,7 @@ class GameSounds {
       this.currentTime = 0;
       this.play();
     }, false);
-    this.background.play();
+    // this.background.play();
   }
 
 }

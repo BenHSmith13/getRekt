@@ -173,19 +173,6 @@ class Menu {
     }
   }
 
-  showCorrectElements() {
-    document.getElementById('highScores').style.display = this.scoresVisible ? 'block' : 'none';
-    document.getElementById('credits').style.display = this.creditsVisible ? 'block' : 'none';
-    document.getElementById('reconfigure').style.display = this.reconfigureVisible ? 'block' : 'none';
-  }
-
-  reconfigControls() {
-    this.reconfigureVisible = !this.reconfigureVisible;
-    this.showCorrectElements();
-    let node = document.getElementById('currentBinding');
-    node.innerHTML = `Reconfigured Jump To: '${this.newJumper}'`
-  }
-
   changeMenu() {
     switch (this.currentItem) {
       case this.menuItems.newGame:
@@ -199,7 +186,7 @@ class Menu {
         this.screen = 'credits';
         break;
       case this.menuItems.reconfigure:
-        this.reconfigControls();
+        this.screen = 'reconfigure';
         break;
       default:
         break;
