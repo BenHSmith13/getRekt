@@ -1,9 +1,5 @@
 class Collision {
 
-  platformCollision(player, platforms) {
-    debugger
-  }
-
   collisions(player, allBullets, allShips, sounds, updateScore, particleSystem) {
     let ships = [];
     let playerBullets = [];
