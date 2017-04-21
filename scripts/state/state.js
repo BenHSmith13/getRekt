@@ -6,7 +6,6 @@ class State {
 
     this.score = 0;
 
-    this.sounds = new GameSounds();
     this.soundPlaying = false;
     this.bulletState = new BulletState(height, width);
     this.platformState = new PlatformState(height, width);
@@ -22,7 +21,6 @@ class State {
 
   updateState(data) {
     if(!this.soundPlaying){
-      // this.sounds.getSound('background').play();
       this.soundPlaying = true;
     }
     const timeMod = data.deltaTime ? data.deltaTime / 100 : 0;
@@ -34,7 +32,7 @@ class State {
       data.player,
       data.bullets,
       data.ships,
-      this.sounds,
+      data.sounds,
       score => this.updateScore(score),
       this.particleState
     );

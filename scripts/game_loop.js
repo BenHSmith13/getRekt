@@ -25,13 +25,15 @@ class GameLoop {
     this.objects = new GameObjects(this.height, this.width);
     this.state = new State(this.height, this.width, this.objects.particles);
     this.menu = new Menu(() => this.restartGame(), this.state);
+    this.sounds = new GameSounds();
     if (firstTime) { this.menu.isActive = true; }
     // Initialize other game objects
 
     const input = new Input();
     this.keys = input.keysdown;
 
-    this.gameLoop()
+    this.gameLoop();
+    this.sounds.loopBackgroundAudio();
   }
 
   restartGame() {
@@ -77,6 +79,7 @@ class GameLoop {
         bullets: bulletPool,
         ships: shipPool,
         mousePosition: this.canvas.mousePosition,
+        sounds: this.sounds,
       };
 
       this.state.updateState(data);
