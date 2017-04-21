@@ -22,12 +22,35 @@ class MenuDrawer {
 
   gameOver(menu, context) {
     context.save();
-    context.font = "100px 'Press Start 2P'";
+    context.font = "75px 'Press Start 2P'";
     context.fillStyle = "white";
     context.textAlign = "center";
-    context.fillText("Game", this.canvas.width/2, this.canvas.height/2 - 55);
-    context.fillText("Over", this.canvas.width/2, this.canvas.height/2 + 55);
+    context.fillText("Game Over", this.width/2, 150);
+    context.fillText(`${_.map(menu.gameOverItems.initials, index => menu.alphabet[index]).join('')}`, this.width/2, this.height/2);
+
+    if (!menu.gameOverItems.submit) {
+      context.fillRect(235 + menu.gameOverItems.position * 75, this.height/2, 70, 25);
+    }
+
+    context.font = "50px 'Press Start 2P'";
+    context.fillStyle = menu.gameOverItems.submit ? "blue" : "white";
+    context.fillText("Submit Score", this.width/2, this.height - 100);
     context.restore();
+  }
+
+  highScores(menu, context) {
+    context.save();
+    context.font = "50px 'Press Start 2P'";
+    context.fillStyle = "white";
+    context.textAlign = "center";
+    _.forEach(menu.highScores, (score, index) => {
+      context.fillText(`${score.name}       ${score.score}`, this.width/2, 75 + 75 * index);
+    });
+    context.restore();
+  }
+
+  credits(menu, context) {
+
   }
 
   drawMenu(menu, context) {
@@ -37,11 +60,15 @@ class MenuDrawer {
         break;
 
       case 'highScores':
-        // TODO:
+        this.highScores(menu, context);
         break;
 
       case 'gameOver':
         this.gameOver(menu, context);
+        break;
+
+      case 'credits':
+        this.credits(menu, context);
         break;
 
       case 'none':

@@ -3,13 +3,24 @@ class Menu {
   constructor(resetGame) {
     this.isActive = false;
     this.screen = 'menu';
-    this.currentItem = '';
+    this.currentItem = null;
     this.menuItems = {
       newGame: 'New Game',
       highScores: 'High Scores',
       credits: 'Credits',
       reconfigure: 'Reconfigure',
     };
+
+    this.gameOverItems = {
+      position: 0,
+      initials: [0, 0, 0],
+      submit: false,
+    };
+
+    this.alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    this.highScores = [];
+    this.listenForHighScores();
 
     this.scoresVisible = false;
     this.creditsVisible = false;
@@ -21,7 +32,6 @@ class Menu {
 
   menuActions(codes) {
     if (this.reconfigureVisible && codes.keyCode !== keyMap.enter) {
-      // debugger
       if(codes.stringKey == " "){
         codes.stringKey = 'space';
       }
@@ -39,8 +49,18 @@ class Menu {
       case keyMap.down:
         this.arrowDown();
         break;
-      case keyMap.esc:
-        this.isActive = !this.isActive;
+      case keyMap.left:
+        this.arrowLeft();
+        break;
+      case keyMap.right:
+        this.arrowRight();
+        break;
+      case keyMap.escape:
+        if (this.screen !== 'menu'){
+          this.screen = 'menu';
+        } else {
+          this.screen = null;
+        }
         break;
       case keyMap.enter:
         this.select();
@@ -90,18 +110,59 @@ class Menu {
     }
   }
 
+  moveInitial(direction) {
+    if (this.gameOverItems.position === 0 && direction === 'left' || this.gameOverItems.position === 2 && direction === 'right') {
+      this.gameOverItems.submit = true;
+    } else {
+      this.gameOverItems.submit = false;
+      if (direction === 'left') { this.gameOverItems.position -= 1}
+      if (direction === 'right') { this.gameOverItems.position += 1}
+    }
+  }
+
+  changeLetter(direction) {
+    if (!this.gameOverItems.submit) {
+      if (direction === 'down') {
+        if (this.gameOverItems.initials[this.gameOverItems.position] === 25) {
+          this.gameOverItems.initials[this.gameOverItems.position] = 0;
+        } else {
+          this.gameOverItems.initials[this.gameOverItems.position] += 1;
+        }
+      } else {
+        if (this.gameOverItems.initials[this.gameOverItems.position] === 0) {
+          this.gameOverItems.initials[this.gameOverItems.position] = 25;
+        } else {
+          this.gameOverItems.initials[this.gameOverItems.position] -= 1;
+        }
+      }
+    }
+  }
+
   arrowUp() {
-    this.currentItem = this.upOne();
+    if (this.screen === 'menu') {
+      this.currentItem = this.upOne();
+    } else if (this.screen === 'gameOver') {
+      this.changeLetter('up');
+    }
   }
 
   arrowDown() {
-    this.currentItem = this.downOne();
+    if (this.screen === 'menu') {
+      this.currentItem = this.downOne();
+    } else if (this.screen === 'gameOver') {
+      this.changeLetter('down');
+    }
   }
 
-  clearScoreDisplay() {
-    const scoreNode = document.getElementById('scores');
-    while (scoreNode.firstChild) {
-      scoreNode.removeChild(scoreNode.firstChild);
+  arrowLeft() {
+    if (this.screen === 'gameOver') {
+      this.moveInitial('left');
+    }
+  }
+
+  arrowRight() {
+    if (this.screen === 'gameOver') {
+      this.moveInitial('right');
     }
   }
 
@@ -111,53 +172,24 @@ class Menu {
     document.getElementById('reconfigure').style.display = this.reconfigureVisible ? 'block' : 'none';
   }
 
-  showScores() {
-    this.screen = 'highScores';
-    this.creditsVisible = false;
-    const scores = JSON.parse(localStorage.getItem('scores'));
-    this.showCorrectElements();
-    if (scores && this.scoresVisible) {
-      const sortedScores = _.orderBy(scores, null, ['desc']);
-      _.forEach(sortedScores, (score, index) => {
-        if (index < 10) {
-          const node = document.createElement('P');
-          const scoreNode = document.createTextNode(score);
-          node.appendChild(scoreNode);
-          document.getElementById('scores').appendChild(node);
-        }
-      })
-    } else {
-      this.clearScoreDisplay();
-    }
-  }
-
-  showCredits() {
-    this.creditsVisible = !this.creditsVisible;
-    this.scoresVisible = false;
-    this.showCorrectElements();
-    this.clearScoreDisplay();
-  }
-
   reconfigControls() {
     this.reconfigureVisible = !this.reconfigureVisible;
     this.showCorrectElements();
-    let node = document.getElementById('currentBinding')
+    let node = document.getElementById('currentBinding');
     node.innerHTML = `Reconfigured Jump To: '${this.newJumper}'`
   }
 
-  select() {
+  changeMenu() {
     switch (this.currentItem) {
       case this.menuItems.newGame:
-        this.scoresVisible = false;
-        this.creditsVisible = false;
-        this.showCorrectElements();
+        this.screen = null;
         this.resetGame();
         break;
       case this.menuItems.highScores:
-        this.showScores();
+        this.screen = 'highScores';
         break;
       case this.menuItems.credits:
-        this.showCredits();
+        this.screen = 'credits';
         break;
       case this.menuItems.reconfigure:
         this.reconfigControls();
@@ -165,5 +197,32 @@ class Menu {
       default:
         break;
     }
+  }
+
+  saveScore() {
+    // Get a reference to the database service
+    const database = firebase.database().ref('scores/');
+    // Create a new post reference with an auto-generated id
+    var newPostRef = database.push();
+    newPostRef.set({
+      name: _.map(this.gameOverItems.initials, index => this.alphabet[index]).join(''),
+      score: 10,
+    });
+    this.screen = 'highScores';
+  }
+
+  select() {
+    if (this.screen === 'menu') {
+      this.changeMenu()
+    } else if (this.screen === 'gameOver' && this.gameOverItems.submit) {
+      this.saveScore();
+    }
+  }
+
+  listenForHighScores() {
+    const scores = firebase.database().ref('scores/').orderByChild('score').limitToLast(10);
+    scores.on('child_added', (data) => {
+      this.highScores.push(data.val());
+    });
   }
 }

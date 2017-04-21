@@ -9,9 +9,3 @@ function startNewGame() {
 }
 
 window.onload = () => startNewGame();
-
-var scores = firebase.database().ref('scores/');
-scores.on('value', function(snapshot) {
-  // updateStarCount(postElement, snapshot.val());
-  debugger;
-});
