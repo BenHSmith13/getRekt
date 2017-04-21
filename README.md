@@ -24,9 +24,9 @@ http://freemusicarchive.org/music/Jono_Bacon/
 * New Game [DONE]
 * High Scores [DONE]
 * Credits [TODO]
-* Reconfigure controls [TODO]
+* Reconfigure controls [DONE]
 #### Reconfigurable Controls
-* Reconfigure from the in game menu [TODO]
+* Reconfigure from the in game menu [DONE]
 * Change Controls [DONE]
 * Stores to local state [DONE]
 #### Particle Effects
@@ -57,4 +57,3 @@ http://freemusicarchive.org/music/Jono_Bacon/
 #### Animation [DONE]
 * Player sprite for running and jumping [DONE]  --may need to clean up jump animation
 * Ships (some are backwards) [TODO]
-
