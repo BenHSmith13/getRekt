@@ -44,30 +44,8 @@ h1 {
   height: 15px;
 }
 
-#scoreText {
-  display: none;
-}
-
-#highScores {
-  display: none;
-}
-
-#credits {
-  display: none;
-}
-
 #reconfigure {
   display: none;
-}
-
-#credits p {
-  font-family: 'Press Start 2P', cursive;
-  text-align: center;
-}
-
-#scores {
-  font-size: 2em;
-  text-align: center;
 }
 
 h2 {

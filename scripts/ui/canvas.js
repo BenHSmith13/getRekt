@@ -41,7 +41,17 @@ class Canvas {
     }
     this.bulletDrawer.drawBullets(data.bullets, this.context);
     this.particleDrawer.drawParticles(data.particles, this.context);
+    this.drawScore(data.score);
     this.menuDrawer.drawMenu(data.menu, this.context);
+  }
+
+  drawScore(score) {
+    this.context.save();
+    this.context.fillStyle = "white";
+    this.context.textAlign = "center";
+    this.context.font = "20px 'Press Start 2P'";
+    this.context.fillText(score, 40, 30);
+    this.context.restore();
   }
 
   drawRect(object) {

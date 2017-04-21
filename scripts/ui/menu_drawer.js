@@ -60,6 +60,7 @@ class MenuDrawer {
   }
 
   credits(menu, context) {
+    context.save();
     context.fillStyle = "white";
     context.textAlign = "center";
     context.font = "50px 'Press Start 2P'";

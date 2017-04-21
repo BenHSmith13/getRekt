@@ -4,8 +4,6 @@
 function startNewGame() {
   const newGame = new GameLoop();
   newGame.startGame(true);
-
-  document.getElementById('scoreText').style.display = 'inline-block';
 }
 
 window.onload = () => startNewGame();

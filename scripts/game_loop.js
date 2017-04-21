@@ -53,10 +53,9 @@ class GameLoop {
       bullets: bulletPool,
       particles,
       menu: this.menu,
+      score: this.state.score,
     };
     this.canvas.draw(data);
-
-    document.getElementById('score').innerHTML = _.toString(this.state.score);
   }
 
   update(deltaTime) {
