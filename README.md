@@ -9,6 +9,8 @@ https://opengameart.org/content/dirt-platformer-tiles
 https://opengameart.org/content/spaceships-top-down
 ### Lasers
 https://opengameart.org/content/lasers-and-beams
+### Explosion
+https://opengameart.org/content/explosion-sprite
 
 ### Explosion Sounds
 http://soundbible.com/1986-Bomb-Exploding.html

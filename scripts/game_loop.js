@@ -23,7 +23,8 @@ class GameLoop {
     this.canvas = new Canvas(this.height, this.width);
     this.canvas.create();
 
-    this.state = new State(this.height, this.width);
+    this.objects = new GameObjects(this.height, this.width);
+    this.state = new State(this.height, this.width, this.objects.particles);
     this.menu = new Menu(() => this.restartGame());
     if (firstTime) { this.menu.isActive = true; }
     // Initialize other game objects
@@ -31,7 +32,6 @@ class GameLoop {
     const input = new Input();
     this.keys = input.keysdown;
 
-    this.objects = new GameObjects(this.height, this.width);
     this.gameLoop()
   }
 
@@ -42,23 +42,16 @@ class GameLoop {
   //  TODO: reset all other values
   }
 
-  displayTime(miliseconds) {
-    const seconds = parseInt(miliseconds / 1000);
-    const minutes = parseInt(seconds / 60);
-    const displaySeconds = seconds - minutes * 60;
-    return `${minutes}:${displaySeconds < 10 ? `0${displaySeconds}` : displaySeconds}`;
-  }
-
-
   render(timelapse) {
     this.canvas.clear();
 
-    const { player, platformPool, bulletPool, shipPool } = this.objects;
+    const { player, platformPool, bulletPool, shipPool, particles } = this.objects;
     const data = {
       ships: shipPool,
       platforms: platformPool,
       player,
       bullets: bulletPool,
+      particles,
     };
     this.canvas.draw(data);
 

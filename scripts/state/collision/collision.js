@@ -1,6 +1,6 @@
 class Collision {
 
-  collisions(player, allBullets, allShips, sounds, updateScore) {
+  collisions(player, allBullets, allShips, sounds, updateScore, particleSystem) {
     let ships = [];
     let playerBullets = [];
     let alienBullets = [];
@@ -18,11 +18,11 @@ class Collision {
       if(ship.visible){ships.push(ship)}
     });
 
-    this.playerKillsAliens(playerBullets, ships, sounds, updateScore);
+    this.playerKillsAliens(playerBullets, ships, sounds, updateScore, particleSystem);
     this.playerShot(alienBullets, player, sounds);
   }
 
-  playerKillsAliens(playerBullets, ships, sounds, updateScore) {
+  playerKillsAliens(playerBullets, ships, sounds, updateScore, particleSystem) {
     _.forEach(playerBullets, (bullet) => {
       let rayCasts = this.rayCast(bullet);
       _.forEach(ships, (ship) => {
@@ -30,6 +30,7 @@ class Collision {
           if (this.isHitting(bullet, steps.xPos, steps.yPos, ship)){
             bullet.visible = false;
             ship.hp -= 5;
+            particleSystem.bulletExplode(bullet);
 
             if (ship.hp <= 0) {
               updateScore(ship.totalHealth);

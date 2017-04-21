@@ -5,11 +5,14 @@ class GameObjects {
   constructor(height, width) {
     const shipPool = new ShipPool();
     const bulletPool = new BulletPool();
+    const particlePool = new ParticlePool();
+
     this.player = new Player();
 
     this.platformPool = this.generatePlatforms(height, width);
     this.bulletPool = bulletPool.generateBullets();
     this.shipPool = shipPool.generateShips();
+    this.particles = particlePool.particles;
   }
 
   static newPlatform(height, width, index, level = 0, offscreen ) {
@@ -33,11 +36,5 @@ class GameObjects {
       platforms[`platform_${index}`] = GameObjects.newPlatform(height, width, index);
     });
     return platforms;
-  }
-
-  newParticle(index) {
-    return new GameObject(`particle_${index}`, 2, 2, 0, 0,
-      { visible: false, direction: 0, duration: 2, angle: 0, rotationDirection: 0, color: 'white' }
-    );
   }
 }

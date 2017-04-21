@@ -17,6 +17,7 @@ class Canvas {
     this.platformDrawer = new PlatformDrawer(height, width, this.tileAssets);
     this.playerDrawer = new PlayerDrawer();
     this.bulletDrawer = new BulletDrawer();
+    this.particleDrawer = new ParticleDrawer();
   }
 
   create() {
@@ -38,6 +39,7 @@ class Canvas {
       this.playerDrawer.drawPlayerHealth(data.player, object => this.drawRect(object), this.context);
     }
     this.bulletDrawer.drawBullets(data.bullets, this.context);
+    this.particleDrawer.drawParticles(data.particles, this.context);
   }
 
   drawRect(object) {
