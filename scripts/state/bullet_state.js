@@ -26,10 +26,11 @@ class BulletState {
     });
   }
 
-  playerBullets(bullets, player, mousePosition, timeMod) {
+  playerBullets(bullets, player, mousePosition, sounds, timeMod) {
     if (player.hp <= 0) { return; }
     if (player.reload < 0 ) {
       player.reload = player.reloadTime;
+      sounds.playLaser01();
       // TODO: extract this
       let newBullet = _.sample(_.filter(bullets, bullet => !bullet.visible));
       if (!newBullet) {
@@ -54,11 +55,12 @@ class BulletState {
     }
   }
 
-  shipBullets(bullets, ships, timeMod) {
+  shipBullets(bullets, ships, sounds, timeMod) {
     _.forEach(ships, (ship) => {
       if (ship.visible) {
         if (ship.reload < 0) {
           ship.reload = ship.reloadTime;
+          sounds.playLaser05();
           let newBullet = _.sample(_.filter(bullets, bullet => !bullet.visible));
           if (!newBullet) {
             //  make a new bullet
@@ -86,9 +88,9 @@ class BulletState {
     });
   }
 
-  updateBullets(bullets, player, ships, mousePosition, timeMod){
+  updateBullets(bullets, player, ships, mousePosition, sounds, timeMod){
     this.moveBullets(bullets, timeMod);
-    this.playerBullets(bullets, player, mousePosition, timeMod);
-    this.shipBullets(bullets, ships, timeMod);
+    this.playerBullets(bullets, player, mousePosition, sounds, timeMod);
+    this.shipBullets(bullets, ships, sounds, timeMod);
   }
 }

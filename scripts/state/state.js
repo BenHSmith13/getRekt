@@ -26,7 +26,7 @@ class State {
     const timeMod = data.deltaTime ? data.deltaTime / 100 : 0;
     this.platformState.updatePlatforms(data.platforms, timeMod);
     this.shipState.updateShips(data.ships, timeMod);
-    this.bulletState.updateBullets(data.bullets, data.player, data.ships, data.mousePosition, timeMod);
+    this.bulletState.updateBullets(data.bullets, data.player, data.ships, data.mousePosition, data.sounds, timeMod);
     this.playerState.updatePlayer(data.player, timeMod, data.keys, data.platforms);
     this.collider.collisions(
       data.player,
