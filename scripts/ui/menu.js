@@ -2,13 +2,15 @@
 class Menu {
   constructor(resetGame) {
     this.isActive = false;
+    this.screen = 'menu';
     this.currentItem = '';
-    this.items = {
+    this.menuItems = {
       newGame: 'New Game',
       highScores: 'High Scores',
       credits: 'Credits',
       reconfigure: 'Reconfigure',
     };
+
     this.scoresVisible = false;
     this.creditsVisible = false;
     this.reconfigureVisible = false;
@@ -57,15 +59,15 @@ class Menu {
   upOne() {
     switch (this.currentItem) {
       case '':
-        return this.items.credits;
-      case this.items.credits:
-        return this.items.highScores;
-      case this.items.highScores:
-        return this.items.newGame;
-      case this.items.newGame:
-        return this.items.reconfigure;
-      case this.items.reconfigure:
-        return this.items.credits;
+        return this.menuItems.credits;
+      case this.menuItems.credits:
+        return this.menuItems.highScores;
+      case this.menuItems.highScores:
+        return this.menuItems.newGame;
+      case this.menuItems.newGame:
+        return this.menuItems.reconfigure;
+      case this.menuItems.reconfigure:
+        return this.menuItems.credits;
       default:
         return '';
     }
@@ -74,15 +76,15 @@ class Menu {
   downOne() {
     switch (this.currentItem) {
       case '':
-        return this.items.newGame;
-      case this.items.newGame:
-        return this.items.highScores;
-      case this.items.highScores:
-        return this.items.credits;
-      case this.items.credits:
-        return this.items.reconfigure;
-      case this.items.reconfigure:
-        return this.items.newGame;
+        return this.menuItems.newGame;
+      case this.menuItems.newGame:
+        return this.menuItems.highScores;
+      case this.menuItems.highScores:
+        return this.menuItems.credits;
+      case this.menuItems.credits:
+        return this.menuItems.reconfigure;
+      case this.menuItems.reconfigure:
+        return this.menuItems.newGame;
       default:
         return '';
     }
@@ -110,7 +112,7 @@ class Menu {
   }
 
   showScores() {
-    this.scoresVisible = !this.scoresVisible;
+    this.screen = 'highScores';
     this.creditsVisible = false;
     const scores = JSON.parse(localStorage.getItem('scores'));
     this.showCorrectElements();
@@ -145,19 +147,19 @@ class Menu {
 
   select() {
     switch (this.currentItem) {
-      case this.items.newGame:
+      case this.menuItems.newGame:
         this.scoresVisible = false;
         this.creditsVisible = false;
         this.showCorrectElements();
         this.resetGame();
         break;
-      case this.items.highScores:
+      case this.menuItems.highScores:
         this.showScores();
         break;
-      case this.items.credits:
+      case this.menuItems.credits:
         this.showCredits();
         break;
-      case this.items.reconfigure:
+      case this.menuItems.reconfigure:
         this.reconfigControls();
         break;
       default:

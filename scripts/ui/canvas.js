@@ -18,6 +18,7 @@ class Canvas {
     this.playerDrawer = new PlayerDrawer();
     this.bulletDrawer = new BulletDrawer();
     this.particleDrawer = new ParticleDrawer();
+    this.menuDrawer = new MenuDrawer(height, width);
   }
 
   create() {
@@ -40,6 +41,7 @@ class Canvas {
     }
     this.bulletDrawer.drawBullets(data.bullets, this.context);
     this.particleDrawer.drawParticles(data.particles, this.context);
+    this.menuDrawer.drawMenu(data.menu, this.context);
   }
 
   drawRect(object) {
@@ -66,16 +68,6 @@ class Canvas {
     this.context.restore();
   }
 
-  gameOver() {
-    this.context.save();
-    this.context.font = "100px 'Press Start 2P'";
-    this.context.fillStyle = "white";
-    this.context.textAlign = "center";
-    this.context.fillText("Game", this.canvas.width/2, this.canvas.height/2 - 55);
-    this.context.fillText("Over", this.canvas.width/2, this.canvas.height/2 + 55);
-    this.context.restore();
-  }
-
   clear() {
     this.context.save();
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -86,20 +78,5 @@ class Canvas {
     this.context.translate(object.xPos, object.yPos);
     this.context.rotate(Utils.degToRad(object.attributes.angle));
     this.context.translate(-object.xPos, -object.yPos);
-  }
-
-  drawMenu(menu) {
-    this.context.save();
-    this.context.font = "60px 'Press Start 2P'";
-    this.context.textAlign = "center";
-    this.context.fillStyle = menu.currentItem === menu.items.newGame ? "blue" : "white";
-    this.context.fillText(menu.items.newGame, this.canvas.width/2, this.canvas.height/2 - 150);
-    this.context.fillStyle = menu.currentItem === menu.items.highScores ? "blue" : "white";
-    this.context.fillText(menu.items.highScores, this.canvas.width/2, this.canvas.height/2 - 50);
-    this.context.fillStyle = menu.currentItem === menu.items.credits ? "blue" : "white";
-    this.context.fillText(menu.items.credits, this.canvas.width/2, this.canvas.height/2 + 50);
-    this.context.fillStyle = menu.currentItem === menu.items.reconfigure ? "blue" : "white";
-    this.context.fillText(menu.items.reconfigure, this.canvas.width/2, this.canvas.height/2 + 150);
-    this.context.restore();
   }
 }

@@ -52,16 +52,15 @@ class GameLoop {
       player,
       bullets: bulletPool,
       particles,
+      menu: this.menu,
     };
     this.canvas.draw(data);
 
-    if (this.menu.isActive) {
-      this.canvas.drawMenu(this.menu);
-    } else if(player.hp <= 0) {
-      this.canvas.gameOver();
-    } else if (this.state.countDown > 0) {
-      this.canvas.countDown(parseInt(this.state.countDown) + 1);
-    }
+    // if(player.hp <= 0) {
+    //   this.canvas.gameOver();
+    // } else if (this.state.countDown > 0) {
+    //   this.canvas.countDown(parseInt(this.state.countDown) + 1);
+    // }
     document.getElementById('score').innerHTML = _.toString(this.state.score);
   }
 
