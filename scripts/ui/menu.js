@@ -32,6 +32,11 @@ class Menu {
     this.newJumper = localStorage.getItem('reconfigured') || 'space';
   }
 
+  reset() {
+    this.countDown = 3;
+    this.screen = 'countDown';
+  }
+
   menuActions(codes) {
     if (this.reconfigureVisible && codes.keyCode !== keyMap.enter) {
       if(codes.stringKey == " "){

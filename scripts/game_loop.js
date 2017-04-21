@@ -36,9 +36,9 @@ class GameLoop {
 
   restartGame() {
     this.initTime = performance.now();
-    this.menu.countDown = 3;
-    this.menu.screen = 'countDown';
+    this.menu.reset();
     this.objects.reset();
+    this.state.reset();
   //  TODO: reset all other values
   }
 

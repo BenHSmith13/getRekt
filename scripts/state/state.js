@@ -16,6 +16,10 @@ class State {
     this.collider = new Collision();
   }
 
+  reset() {
+    this.score = 0;
+  }
+
   updateState(data) {
     if(!this.soundPlaying){
       // this.sounds.getSound('background').play();
