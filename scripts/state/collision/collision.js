@@ -22,6 +22,18 @@ class Collision {
     this.playerShot(alienBullets, player, sounds);
   }
 
+  powerUps(player, powerUp) {
+    _.forEach(powerUp, (pup) => {
+      if(pup.visible){
+        if (this.powerCollision(player, pup)) {
+          player.hp += 40;
+          player.hp = player.hp > player.totalHealth ? player.totalHealth : player.hp
+          pup.visible = false;
+        }
+      }
+    })
+  }
+
   playerKillsAliens(playerBullets, ships, sounds, updateScore, particleSystem) {
     _.forEach(playerBullets, (bullet) => {
       let rayCasts = this.rayCast(bullet);
@@ -87,6 +99,16 @@ class Collision {
       xPos + bullet.width > object.xPos &&
       yPos < object.yPos + object.height &&
       bullet.height + yPos > object.yPos) {
+      return true
+    }
+    return false;
+  }
+
+  powerCollision(player, object){
+    if (player.xPos < object.xPos + 20 &&
+      player.xPos + player.width > object.xPos &&
+      player.yPos < object.yPos + 20 &&
+      player.height + player.yPos > object.yPos) {
       return true
     }
     return false;
