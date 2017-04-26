@@ -22,15 +22,27 @@ class Collision {
     this.playerShot(alienBullets, player, sounds);
   }
 
-  powerUps(player, powerUp) {
+  powerUps(player, powerUp, particleSystem) {
     _.forEach(powerUp, (pup) => {
-      if(pup.visible){
+
+      if(pup.visible && pup.type === 'bomb'){
+        if (this.powerCollision(player, pup)) {
+          player.hp -= 30;
+          pup.xPos -= 30;
+          pup.yPos -= 10;
+          particleSystem.bulletExplode(pup);
+          pup.visible = false;
+        }
+      }
+
+      if(pup.visible && pup.type === 'health'){
         if (this.powerCollision(player, pup)) {
           player.hp += 40;
           player.hp = player.hp > player.totalHealth ? player.totalHealth : player.hp
           pup.visible = false;
         }
       }
+
     })
   }
 

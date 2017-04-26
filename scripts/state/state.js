@@ -29,7 +29,7 @@ class State {
     this.shipState.updateShips(data.ships, timeMod);
     this.bulletState.updateBullets(data.bullets, data.player, data.ships, data.mousePosition, data.sounds, timeMod);
     this.playerState.updatePlayer(data.player, timeMod, data.keys, data.platforms);
-    this.collider.powerUps(data.player, this.powerUps.powerUps);
+    this.collider.powerUps(data.player, this.powerUps.powerUps, this.particleState);
     this.collider.collisions(
       data.player,
       data.bullets,
