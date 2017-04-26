@@ -20,9 +20,9 @@ https://opengameart.org/content/explosion-sprite
 http://soundbible.com/1986-Bomb-Exploding.html
 http://freemusicarchive.org/music/Jono_Bacon/
 
-#### Game Play (2/3)
+#### Game Play (3/3)
 * Jumping/platforming [DONE]
-* Shooting at mouse pointer [TODO]
+* Shooting at mouse pointer [Done]
 * Ships spawn and fire [DONE]
 #### Menuing (3/4)
 * New Game [DONE]

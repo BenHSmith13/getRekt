@@ -86,9 +86,19 @@ class MenuDrawer {
     context.fillText(`Ben Call  &  Ben Smith`, this.width/2, 150);
 
     context.font = "50px 'Press Start 2P'";
-    context.fillText('Assets By', this.width/2, 250);
-    context.font = "30px 'Press Start 2P'";
-    context.fillText(`//TODO: Asset credits`, this.width/2, 300);
+    context.fillText('Assets By', this.width/2, 280);
+    context.font = "11px 'Press Start 2P'";
+    context.fillText(`https://opengameart.org/content/dirt-platformer-tiles`, this.width/2, 330);
+    context.font = "11px 'Press Start 2P'";
+    context.fillText(`https://opengameart.org/content/spaceships-top-down`, this.width/2, 360);
+    context.font = "11px 'Press Start 2P'";
+    context.fillText(`https://opengameart.org/content/lasers-and-beams`, this.width/2, 390);
+    context.font = "11px 'Press Start 2P'";
+    context.fillText(`https://opengameart.org/content/explosion-sprite`, this.width/2, 420);
+    context.font = "11px 'Press Start 2P'";
+    context.fillText(`http://soundbible.com/1986-Bomb-Exploding.html`, this.width/2, 450);
+    context.font = "11px 'Press Start 2P'";
+    context.fillText(`http://freemusicarchive.org/music/Jono_Bacon/`, this.width/2, 480);
     context.restore();
   }
 
