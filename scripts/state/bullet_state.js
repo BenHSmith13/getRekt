@@ -6,7 +6,7 @@ class BulletState {
   }
 
   getMouseAngle(player, mousePosition) {
-    return  Math.atan2(mousePosition.yPos - player.yPos, mousePosition.xPos - player.xPos) * 180 / Math.PI;
+    return  Math.atan2(mousePosition.yPos - (player.yPos + player.height / 2 - 30), mousePosition.xPos - (player.xPos + player.width / 2)) * 180 / Math.PI;
   }
 
   moveBullets(bullets, timeMod) {

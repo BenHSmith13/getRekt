@@ -1,14 +1,8 @@
-@font-face {
-  /*font-family: myFont;*/
-  /*src: url(.woff) format('woff'),*/
-        /*url(.svg) format('svg'),*/
-        /*url(.eot) format('eot');*/
-}
-
 body {
-  /*font-family: myFont;*/
+  font-family: 'Stalinist One', cursive;
   background-color: DarkOliveGreen;
   color: OrangeRed;
+  overflow: hidden;
 }
 
 h1 {
