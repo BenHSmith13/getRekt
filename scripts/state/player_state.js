@@ -79,7 +79,7 @@ class PlayerState {
     if (player.state === 'running') {
       this.run(player, timeMod, platforms );
     }
-    if (player.state !== 'jumping' && keys[keyMap[localStorage.reconfigured]] && player.velocity === 0) {
+    if (player.state !== 'jumping' && keys[keyMap[localStorage.reconfigured || 'space']] && player.velocity === 0) {
       player.state = 'jumping';
       player.velocity = player.jumpPower * -1;
     }

@@ -1,7 +1,7 @@
 # Get Rekt You Alien Muthers
 
 ### To Run
-You will need to navigate to the folder and run "node main.js"
+You will need to navigate to the folder, npm install, and run "node main.js"
 To access go to localhost::9000
 
 
