@@ -3,11 +3,13 @@ body {
   background-color: DarkOliveGreen;
   color: OrangeRed;
   position: relative;
+  overflow: hidden;
 }
 
 h1 {
   position: fixed;
   width: 100%;
+  top: -5vh;
   text-align: center;
   font-size: 4em;
   z-index: 3;
@@ -15,7 +17,7 @@ h1 {
 
 .game {
   position: fixed;
-  top: 18vh;
+  top: 12vh;
   left: calc((100vw - 700px) / 2);
   padding-left: 0;
   padding-right: 0;
