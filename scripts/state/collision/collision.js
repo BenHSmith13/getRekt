@@ -46,12 +46,14 @@ class Collision {
         if(pup.type === 'heavyBullet'){
           if (this.powerCollision(player, pup)) {
             player.currentBulletType = pup.type
+            pup.visible = false;
           }
         }
 
         if(pup.type === 'shotgun'){
           if (this.powerCollision(player, pup)) {
             player.currentBulletType = pup.type
+            pup.visible = false;
           }
         }
       }
@@ -66,15 +68,20 @@ class Collision {
           if (this.isHitting(bullet, steps.xPos, steps.yPos, ship)){
             bullet.visible = false;
             // debugger
+            console.log(ship.hp)
             switch(bullet.type) {
               case 'normal':
                 ship.hp -= 5;
+                break;
               case 'heavyBullet':
                 ship.hp -= 25;
+                break;
               case 'shotgun':
                 ship.hp -= 15;
+                break;
               default:
                 ship.hp -= 5;
+                break;
             }
             particleSystem.bulletExplode(bullet);
             console.log(ship.hp)
