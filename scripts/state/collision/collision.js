@@ -27,7 +27,7 @@ class Collision {
 
       if(pup.visible && pup.type === 'bomb'){
         if (this.powerCollision(player, pup)) {
-          player.hp -= 30;
+          player.hp -= 60;
           pup.xPos -= 30;
           pup.yPos -= 10;
           particleSystem.bulletExplode(pup);

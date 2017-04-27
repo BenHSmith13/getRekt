@@ -67,11 +67,10 @@ http://freemusicarchive.org/music/Jono_Bacon/
 * Gravity on player [DONE]
 * Gravity on Bombs [TODO]
 
-#### Procedural Generation (2/3)
+#### Procedural Generation (2/2)
 * Platforms Generate procedurally [DONE]
-* Power-ups spawn on platforms [TODO]
-* Health [DONE]
+* Extra things spawn on platforms that have effects [DONE]
 
-#### Animation (1/2)
-* Player sprite for running and jumping [DONE]  --may need to clean up jump animation
-* Ships (some are backwards) [TODO]
+#### Animation (2/2)
+* Player sprite for running and jumping [DONE]
+* Ships [DONE]
