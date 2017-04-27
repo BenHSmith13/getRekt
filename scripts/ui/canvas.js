@@ -25,7 +25,6 @@ class Canvas {
   create() {
     this.context = this.canvas.getContext("2d");
     const rect = this.canvas.getBoundingClientRect();
-    // TODO: make this a named function to clean up, maybe
     this.canvas.addEventListener('mousemove', (e) => {
       this.mousePosition.xPos = e.clientX - rect.left;
       this.mousePosition.yPos = e.clientY - rect.top;
@@ -38,7 +37,7 @@ class Canvas {
     this.platformDrawer.drawPlatforms(data.platforms, this.context);
     if (data.player.hp > 0) {
       this.playerDrawer.drawPlayer(data.player, this.context);
-      this.playerDrawer.drawPlayerHealth(data.player, object => this.drawRect(object), this.context);
+      this.drawPlayerHealth(data.player);
     }
     this.bulletDrawer.drawBullets(data.bullets, this.context);
     this.particleDrawer.drawParticles(data.particles, this.context);
@@ -56,17 +55,22 @@ class Canvas {
     this.context.restore();
   }
 
-  drawRect(object) {
+  drawPlayerHealth(player) {
+    const precentHealth = player.hp / player.totalHealth;
+    this.drawRect(5, 555, 275, 35, 'black');
+    this.drawRect(25, 560, 250 * precentHealth, 25, 'orangeRed');
+    this.context.fillStyle = "white";
+    this.context.textAlign = "center";
+    this.context.font = "10px 'Press Start 2P'";
+    this.context.fillText('H', 15, 570);
+    this.context.fillText('P', 15, 585);
+    this.context.fillText(player.hp, 150, 577);
+  }
+
+  drawRect(xPos, yPos, width, height, color) {
     this.context.save();
-    this.context.fillStyle = object.attributes.color;
-    if (object.attributes.angle) {
-      this.rotateObject(object);
-    }
-    this.context.fillRect(
-      object.xPos,
-      object.yPos,
-      object.width,
-      object.height);
+    this.context.fillStyle = color;
+    this.context.fillRect(xPos, yPos, width, height);
     this.context.stroke();
     this.context.restore();
   }
@@ -75,11 +79,5 @@ class Canvas {
     this.context.save();
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.context.restore();
-  }
-
-  rotateObject(object){
-    this.context.translate(object.xPos, object.yPos);
-    this.context.rotate(Utils.degToRad(object.attributes.angle));
-    this.context.translate(-object.xPos, -object.yPos);
   }
 }
