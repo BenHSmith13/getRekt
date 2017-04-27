@@ -4,7 +4,6 @@ class Canvas {
     this.canvas = document.getElementById('canvas');
     this.canvas.width = width;
     this.canvas.height = height;
-    this.canvas.style = 'padding: 20px';
     this.context = null;
     this.mousePosition = {
       xPos: 0,

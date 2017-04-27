@@ -2,47 +2,41 @@ body {
   font-family: 'Stalinist One', cursive;
   background-color: DarkOliveGreen;
   color: OrangeRed;
-  overflow: hidden;
+  position: relative;
 }
 
 h1 {
+  position: fixed;
+  width: 100%;
   text-align: center;
   font-size: 4em;
+  z-index: 3;
 }
 
 .game {
+  position: fixed;
+  top: 18vh;
+  left: calc((100vw - 700px) / 2);
   padding-left: 0;
   padding-right: 0;
   margin-left: auto;
   margin-right: auto;
   display: block;
+  z-index: 5;
 }
 
-.gameInfo {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  width: 700px;
+.sideImage {
+  position: fixed;
+  top: 200px;
+  height: 400px;
+  transform: rotate(90deg);
+  z-index: 0;
 }
 
-#lives {
-  position: absolute;
-  right: 0;
-  display: none;
+.imageLeft {
+  right: calc((100vw - 500px));
 }
 
-.life {
-  display: inline-block;
-  background-color: lightgray;
-  width: 50px;
-  height: 15px;
-}
-
-#reconfigure {
-  display: none;
-}
-
-h2 {
-  text-align: center;
-  font-size: 3em;
+.imageRight {
+  left: calc((100vw - 500px));
 }
