@@ -22,7 +22,7 @@ class Collision {
     this.playerShot(alienBullets, player, sounds);
   }
 
-  powerUps(player, powerUp, particleSystem, setBulletType) {
+  powerUps(player, powerUp, particleSystem) {
     _.forEach(powerUp, (pup) => {
       if(pup.visible){
         if(pup.type === 'bomb'){
@@ -44,16 +44,14 @@ class Collision {
         }
 
         if(pup.type === 'heavyBullet'){
-          debugger
           if (this.powerCollision(player, pup)) {
-            setBulletType(pup.type)
+            player.currentBulletType = pup.type
           }
         }
 
         if(pup.type === 'shotgun'){
-          debugger
           if (this.powerCollision(player, pup)) {
-            setBulletType(pup.type)
+            player.currentBulletType = pup.type
           }
         }
       }
@@ -67,9 +65,19 @@ class Collision {
         _.forEach(rayCasts, (steps) => {
           if (this.isHitting(bullet, steps.xPos, steps.yPos, ship)){
             bullet.visible = false;
-            ship.hp -= 5;
+            // debugger
+            switch(bullet.type) {
+              case 'normal':
+                ship.hp -= 5;
+              case 'heavyBullet':
+                ship.hp -= 25;
+              case 'shotgun':
+                ship.hp -= 15;
+              default:
+                ship.hp -= 5;
+            }
             particleSystem.bulletExplode(bullet);
-
+            console.log(ship.hp)
             if (ship.hp <= 0) {
               updateScore(ship.totalHealth);
               sounds.getSound('explosion').currentTime = 0;

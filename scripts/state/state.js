@@ -3,7 +3,6 @@ class State {
   constructor (height, width, particles) {
     this.height = height;
     this.width = width;
-    this.currentBulletType = 'normal';
 
     this.score = 0;
 
@@ -19,11 +18,6 @@ class State {
 
   reset() {
     this.score = 0;
-  }
-
-  setBulletType(type) {
-    debugger
-    this.currentBulletType = type;
   }
 
   updateState(data) {
@@ -43,7 +37,7 @@ class State {
       this.currentBulletType
       );
     this.playerState.updatePlayer(data.player, timeMod, data.keys, data.platforms);
-    this.collider.powerUps(data.player, this.powerUps.powerUps, this.particleState, this.setBulletType);
+    this.collider.powerUps(data.player, this.powerUps.powerUps, this.particleState);
     this.collider.collisions(
       data.player,
       data.bullets,
