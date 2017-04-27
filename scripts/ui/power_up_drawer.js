@@ -8,7 +8,7 @@ class PowerUpDrawer {
     this.heavyBullet.src = 'assets/power_ups/straight_gun.png';
 
     this.shotGun = new Image();
-    this.shotGun.src = 'assets/power_ups/straight_gun.png';
+    this.shotGun.src = 'assets/power_ups/diagonal_gun.png';
 
     this.bomb = new Image();
     this.bomb.src = 'assets/power_ups/missile.png';

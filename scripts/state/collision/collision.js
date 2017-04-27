@@ -45,14 +45,14 @@ class Collision {
 
         if(pup.type === 'heavyBullet'){
           if (this.powerCollision(player, pup)) {
-            player.currentBulletType = pup.type
+            player.currentBulletType = pup.type;
             pup.visible = false;
           }
         }
 
-        if(pup.type === 'shotgun'){
+        if(pup.type === 'shotGun'){
           if (this.powerCollision(player, pup)) {
-            player.currentBulletType = pup.type
+            player.currentBulletType = pup.type;
             pup.visible = false;
           }
         }

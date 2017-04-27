@@ -28,8 +28,8 @@ class BulletAssets {
   heavyShot() {
     return {
       tile: this.sprites,
-      frameX: 300,
-      frameY: 210,
+      frameX: 215,
+      frameY: 300,
       width: 45,
       height: 100
     }
@@ -38,10 +38,10 @@ class BulletAssets {
   shotGun() {
     return {
       tile: this.sprites,
-      frameX: 310,
-      frameY: 25,
+      frameX: 235,
+      frameY: 215,
       width: 45,
-      height: 100
+      height: 75
     }
   }
 

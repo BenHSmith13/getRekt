@@ -1,4 +1,4 @@
-// TODO
+
 class Bullet {
   constructor(name) {
     this.name = name;

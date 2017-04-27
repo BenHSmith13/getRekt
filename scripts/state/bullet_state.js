@@ -26,29 +26,35 @@ class BulletState {
     });
   }
 
-  playerBullets(bullets, player, mousePosition, sounds, timeMod, currentBulletType, setBulletType) {
+  makeNewPlayerBullet(bullets, player, mousePosition, directionMod) {
+    let newBullet = _.sample(_.filter(bullets, bullet => !bullet.visible));
+    if (!newBullet) {
+      const nameIndex = _.size(bullets);
+      newBullet = BulletPool.newBullet(nameIndex);
+      bullets[`bullet_${nameIndex}`] = newBullet;
+    } else {
+      newBullet.visible = true;
+      newBullet.owner = 'player';
+      newBullet.type = player.currentBulletType;
+      newBullet.height = 30;
+      newBullet.width = 15;
+      newBullet.direction = this.getMouseAngle(player, mousePosition) + directionMod;
+      newBullet.xPos = player.xPos + player.width / 2;
+      newBullet.yPos = player.yPos + player.height / 2 - 30;
+      newBullet.prevXPos = newBullet.xPos;
+      newBullet.prevYPos = newBullet.yPos;
+    }
+  }
+
+  playerBullets(bullets, player, mousePosition, sounds, timeMod) {
     if (player.hp <= 0) { return; }
     if (player.reload < 0 ) {
       player.reload = player.reloadTime;
       sounds.playLaser01();
-      // TODO: extract this
-      let newBullet = _.sample(_.filter(bullets, bullet => !bullet.visible));
-      if (!newBullet) {
-        //  make a new bullet
-        const nameIndex = _.size(bullets);
-        newBullet = BulletPool.newBullet(nameIndex);
-        bullets[`bullet_${nameIndex}`] = newBullet;
-      } else {
-        newBullet.visible = true;
-        newBullet.owner = 'player';
-        newBullet.type = player.currentBulletType;
-        newBullet.height = 30;
-        newBullet.width = 15;
-        newBullet.direction = this.getMouseAngle(player, mousePosition);
-        newBullet.xPos = player.xPos + player.width / 2;
-        newBullet.yPos = player.yPos + player.height / 2 - 30;
-        newBullet.prevXPos = newBullet.xPos;
-        newBullet.prevYPos = newBullet.yPos;
+      this.makeNewPlayerBullet(bullets, player, mousePosition, 0);
+      if (player.currentBulletType === 'shotGun') {
+        this.makeNewPlayerBullet(bullets, player, mousePosition, 20);
+        this.makeNewPlayerBullet(bullets, player, mousePosition, -20);
       }
     } else {
       player.reload -= timeMod;

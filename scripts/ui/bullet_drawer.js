@@ -6,16 +6,16 @@ class BulletDrawer {
 
   drawBullet(bullet, context) {
     let asset = this.bulletAsset.playerShot();
-    if (bullet.type === 'heavyBullet') {
-      asset = this.bulletAsset.heavyShot();
-    } else if (bullet.type === 'shotGun') {
-      asset = this.bulletAsset.shotGun();
-    } else if (bullet.owner === 'gunShip' || bullet.owner === 'heavyGunShip') {
+    if (bullet.owner === 'gunShip' || bullet.owner === 'heavyGunShip') {
       asset = this.bulletAsset.bombShot();
     } else if (bullet.owner === 'necroCruiser' || bullet.owner === 'crusader') {
       asset = this.bulletAsset.precisionShot();
     } else if (bullet.owner !== 'player') {
       asset = this.bulletAsset.shipShot();
+    } else if (bullet.type === 'heavyBullet') {
+      asset = this.bulletAsset.heavyShot();
+    } else if (bullet.type === 'shotGun') {
+      asset = this.bulletAsset.shotGun();
     }
 
     context.save();
