@@ -1,30 +1,24 @@
 # Get Rekt You Alien Muthers
 
-### To Run
-You will need to navigate to the folder, npm install, and run "node main.js"
-To access go to localhost::9000
+## Setup
+In the project run the following:
+```
+npm install
+node main.js
+```
+Open `localhost::9000` in the browser
 
+## Game Play
+* Use the Arrow keys to navigate the menu
+* Enter to select
+* Move mouse on canvas to aim
+* Default jump control is `space`, this is reconfigurable via the menu
+* Re-open the menu with `esc`
 
-Assets
-
-### Platform tiles
-https://opengameart.org/content/dirt-platformer-tiles
-### Ships
-https://opengameart.org/content/spaceships-top-down
-### Lasers
-https://opengameart.org/content/lasers-and-beams
-### Explosion
-https://opengameart.org/content/explosion-sprite
-### Explosion Sounds
-http://soundbible.com/1986-Bomb-Exploding.html
-
-http://freemusicarchive.org/music/Jono_Bacon/
-
-
-
+## Requirements
 #### Game Play (4/4)
 * Jumping/platforming [DONE]
-* Shooting at mouse pointer [Done]
+* Shooting at mouse pointer [DONE]
 * Ships spawn and fire [DONE]
 * Dodge bad ground obstacles [DONE]
 
@@ -76,3 +70,15 @@ http://freemusicarchive.org/music/Jono_Bacon/
 #### Animation (2/2)
 * Player sprite for running and jumping [DONE]
 * Ships [DONE]
+
+
+## Assets Credits
+**Images**
+* https://opengameart.org/content/dirt-platformer-tiles
+* https://opengameart.org/content/spaceships-top-down
+* https://opengameart.org/content/lasers-and-beams
+* https://opengameart.org/content/explosion-sprite
+
+**Audio**
+* http://soundbible.com/1986-Bomb-Exploding.html
+* http://freemusicarchive.org/music/Jono_Bacon/
