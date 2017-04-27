@@ -17,7 +17,7 @@ class BulletDrawer {
     } else if (bullet.owner !== 'player') {
       asset = this.bulletAsset.shipShot();
     }
-    // console.log(bullet.owner);
+
     context.save();
     context.translate(bullet.xPos, bullet.yPos);
     context.rotate(Utils.degToRad(bullet.direction + 90));

@@ -67,8 +67,7 @@ class Collision {
         _.forEach(rayCasts, (steps) => {
           if (this.isHitting(bullet, steps.xPos, steps.yPos, ship)){
             bullet.visible = false;
-            // debugger
-            console.log(ship.hp)
+
             switch(bullet.type) {
               case 'normal':
                 ship.hp -= 5;
@@ -84,7 +83,7 @@ class Collision {
                 break;
             }
             particleSystem.bulletExplode(bullet);
-            console.log(ship.hp)
+
             if (ship.hp <= 0) {
               updateScore(ship.totalHealth);
               sounds.getSound('explosion').currentTime = 0;

@@ -49,7 +49,6 @@ class PowerUps {
     if (this.spawnCounter <= 0) {
       this.spawnCounter = this.potentialSpawnRate;
       if (_.random(2)) {
-        console.log('POWERING UP');
         const powerUp = this.getPowerUp();
         powerUp.visible = true;
         powerUp.xPos = this.width + 25;
