@@ -26,7 +26,7 @@ class BulletState {
     });
   }
 
-  playerBullets(bullets, player, mousePosition, sounds, timeMod) {
+  playerBullets(bullets, player, mousePosition, sounds, timeMod, currentBulletType, setBulletType) {
     if (player.hp <= 0) { return; }
     if (player.reload < 0 ) {
       player.reload = player.reloadTime;
@@ -38,10 +38,10 @@ class BulletState {
         const nameIndex = _.size(bullets);
         newBullet = BulletPool.newBullet(nameIndex);
         bullets[`bullet_${nameIndex}`] = newBullet;
-        // console.log('new Bullet');
       } else {
         newBullet.visible = true;
         newBullet.owner = 'player';
+        newBullet.type = currentBulletType
         newBullet.height = 30;
         newBullet.width = 15;
         newBullet.direction = this.getMouseAngle(player, mousePosition);
@@ -88,9 +88,9 @@ class BulletState {
     });
   }
 
-  updateBullets(bullets, player, ships, mousePosition, sounds, timeMod){
+  updateBullets(bullets, player, ships, mousePosition, sounds, timeMod, currentBulletType){
     this.moveBullets(bullets, timeMod);
-    this.playerBullets(bullets, player, mousePosition, sounds, timeMod);
+    this.playerBullets(bullets, player, mousePosition, sounds, timeMod, currentBulletType);
     this.shipBullets(bullets, ships, sounds, timeMod);
   }
 }

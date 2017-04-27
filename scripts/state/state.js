@@ -3,6 +3,7 @@ class State {
   constructor (height, width, particles) {
     this.height = height;
     this.width = width;
+    this.currentBulletType = 'normal';
 
     this.score = 0;
 
@@ -20,6 +21,11 @@ class State {
     this.score = 0;
   }
 
+  setBulletType(type) {
+    debugger
+    this.currentBulletType = type;
+  }
+
   updateState(data) {
     if(!this.soundPlaying){
       this.soundPlaying = true;
@@ -27,9 +33,17 @@ class State {
     const timeMod = data.deltaTime ? data.deltaTime / 100 : 0;
     this.platformState.updatePlatforms(data.platforms, timeMod);
     this.shipState.updateShips(data.ships, timeMod);
-    this.bulletState.updateBullets(data.bullets, data.player, data.ships, data.mousePosition, data.sounds, timeMod);
+    this.bulletState.updateBullets(
+      data.bullets,
+      data.player,
+      data.ships,
+      data.mousePosition,
+      data.sounds,
+      timeMod,
+      this.currentBulletType
+      );
     this.playerState.updatePlayer(data.player, timeMod, data.keys, data.platforms);
-    this.collider.powerUps(data.player, this.powerUps.powerUps, this.particleState);
+    this.collider.powerUps(data.player, this.powerUps.powerUps, this.particleState, this.setBulletType);
     this.collider.collisions(
       data.player,
       data.bullets,
