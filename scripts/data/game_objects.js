@@ -18,9 +18,7 @@ class GameObjects {
   reset() {
     // TODO: there may be more values I need to reset
     this.player.hp = this.player.totalHealth;
-    _.forEach(this.platformPool, (platform) => {
-    //  TODO
-    });
+    this.player.currentBulletType = 'normal';
     _.forEach(this.bulletPool, (bullet) => { bullet.visible = false; });
     _.forEach(this.shipPool, (ship) => { ship.visible = false; });
     _.forEach(this.particles, (particle) => { particle.visible = false; });

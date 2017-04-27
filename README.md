@@ -15,9 +15,9 @@ https://opengameart.org/content/spaceships-top-down
 https://opengameart.org/content/lasers-and-beams
 ### Explosion
 https://opengameart.org/content/explosion-sprite
-
 ### Explosion Sounds
 http://soundbible.com/1986-Bomb-Exploding.html
+
 http://freemusicarchive.org/music/Jono_Bacon/
 
 
@@ -49,9 +49,9 @@ http://freemusicarchive.org/music/Jono_Bacon/
 * Background Music [DONE]
 * Sounds on shots fired, collisions, and kills [DONE]
 
-#### AI Enemies (0/2)
+#### AI Enemies (1/2)
 * Bombs that home in on the player [TODO]
-* Ship Types that target the player [TODO]
+* Ship Types that target the player [DONE]
 
 #### Tile Rendering (1/1)
 * All platforms and background are tiles [DONE]
@@ -59,9 +59,9 @@ http://freemusicarchive.org/music/Jono_Bacon/
 #### Collision Detection (1/1)
 * Ray Casting [DONE]
 
-#### Over the Top Weapons (0/2)
-* Additional weapon types [TODO]
-* Upgrades [TODO]
+#### Over the Top Weapons (2/2)
+* Additional weapon types [DONE]
+* Upgrades [DONE]
 
 #### Physics (1/2)
 * Gravity on player [DONE]
