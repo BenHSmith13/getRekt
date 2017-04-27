@@ -44,12 +44,14 @@ class Collision {
         }
 
         if(pup.type === 'heavyBullet'){
+          debugger
           if (this.powerCollision(player, pup)) {
             setBulletType(pup.type)
           }
         }
 
         if(pup.type === 'shotgun'){
+          debugger
           if (this.powerCollision(player, pup)) {
             setBulletType(pup.type)
           }
