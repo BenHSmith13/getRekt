@@ -11,6 +11,7 @@ class Bullet {
     this.visible = false;
     this.bulletSpeed = 90;
 
+    this.type = 'normal';
     this.direction = 0;
     this.owner = null;
   }
