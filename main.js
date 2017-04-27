@@ -5,6 +5,7 @@ const app             = express();
 const server          = http.Server(app);
 
 server.listen( port );
+console.log('Game running on localhost:9000');
 
 app.get( '/', function( req, res ){
     res.sendfile( __dirname + '/index.html' );
