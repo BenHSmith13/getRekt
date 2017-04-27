@@ -1,15 +1,37 @@
 
 class PowerUpDrawer {
   constructor() {
+    this.heath = new Image();
+    this.heath.src = 'assets/power_ups/repair.png';
 
+    this.heavyBullet = new Image();
+    this.heavyBullet.src = 'assets/power_ups/straight_gun.png';
+
+    this.shotGun = new Image();
+    this.shotGun.src = 'assets/power_ups/straight_gun.png';
+
+    this.bomb = new Image();
+    this.bomb.src = 'assets/power_ups/missile.png';
   }
 
   drawPowerUps(powerUps, context) {
     context.save();
-    context.fillStyle = 'green';
     _.forEach(powerUps, (ups) => {
       if (ups.visible) {
-        context.fillRect(ups.xPos, ups.yPos, 20, 20);
+        switch (ups.type) {
+          case 'health':
+            context.drawImage(this.heath, ups.xPos, ups.yPos, 20, 20);
+            break;
+          case 'heavyBullet':
+            context.drawImage(this.heath, ups.xPos, ups.yPos, 20, 20);
+            break;
+          case 'shotGun':
+            context.drawImage(this.heath, ups.xPos, ups.yPos, 20, 20);
+            break;
+          case 'bomb':
+            context.drawImage(this.bomb, ups.xPos - 10, ups.yPos - 15, 40, 40);
+            break;
+        }
       }
     });
     context.restore();

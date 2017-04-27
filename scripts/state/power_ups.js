@@ -8,7 +8,7 @@ class PowerUps {
     this.powerUps = {};
     this.initializePowerUps();
 
-    this.types = ['health'];
+    this.types = ['health', 'bomb', 'bomb', 'bomb', 'heavyBullet', 'shotGun', 'bomb', 'bomb'];
 
     this.potentialSpawnRate = 5;
     this.spawnCounter = this.potentialSpawnRate;
@@ -48,7 +48,7 @@ class PowerUps {
     this.spawnCounter -= timeMod / 10;
     if (this.spawnCounter <= 0) {
       this.spawnCounter = this.potentialSpawnRate;
-      if (_.random()) {
+      if (_.random(2)) {
         console.log('POWERING UP');
         const powerUp = this.getPowerUp();
         powerUp.visible = true;
