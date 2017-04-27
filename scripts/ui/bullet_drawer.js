@@ -5,7 +5,15 @@ class BulletDrawer {
   }
 
   drawBullet(bullet, context) {
-    const asset = this.bulletAsset.playerShot();
+    let asset = this.bulletAsset.playerShot();
+    if (bullet.type === 'heavyBullet') {
+      asset = this.bulletAsset.heavyShot();
+    } else if (bullet.type === 'shotGun') {
+      asset = this.bulletAsset.shotGun();
+    } else if (bullet.owner !== 'player') {
+      asset = this.bulletAsset.shipShot();
+    }
+    // console.log(bullet.owner);
     context.save();
     context.translate(bullet.xPos, bullet.yPos);
     context.rotate(Utils.degToRad(bullet.direction + 90));

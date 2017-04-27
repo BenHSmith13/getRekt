@@ -23,10 +23,10 @@ class PowerUpDrawer {
             context.drawImage(this.heath, ups.xPos, ups.yPos, 20, 20);
             break;
           case 'heavyBullet':
-            context.drawImage(this.heath, ups.xPos, ups.yPos, 20, 20);
+            context.drawImage(this.heavyBullet, ups.xPos, ups.yPos, 20, 20);
             break;
           case 'shotGun':
-            context.drawImage(this.heath, ups.xPos, ups.yPos, 20, 20);
+            context.drawImage(this.shotGun, ups.xPos, ups.yPos, 20, 20);
             break;
           case 'bomb':
             context.drawImage(this.bomb, ups.xPos - 10, ups.yPos - 15, 40, 40);
