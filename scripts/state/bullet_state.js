@@ -41,7 +41,7 @@ class BulletState {
       } else {
         newBullet.visible = true;
         newBullet.owner = 'player';
-        newBullet.type = currentBulletType;
+        newBullet.type = player.currentBulletType;
         newBullet.height = 30;
         newBullet.width = 15;
         newBullet.direction = this.getMouseAngle(player, mousePosition);
