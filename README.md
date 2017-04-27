@@ -1,5 +1,7 @@
 # Get Rekt You Alien Muthers
 
+**Repo:** [github.com/BenHSmith13/getRekt](https://github.com/BenHSmith13/getRekt)
+
 ## Setup
 In the project run the following:
 ```
