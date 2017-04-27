@@ -22,10 +22,11 @@ http://freemusicarchive.org/music/Jono_Bacon/
 
 
 
-#### Game Play (3/3)
+#### Game Play (4/4)
 * Jumping/platforming [DONE]
 * Shooting at mouse pointer [Done]
 * Ships spawn and fire [DONE]
+* Dodge bad ground obstacles [DONE]
 
 #### Menuing (4/4)
 * New Game [DONE]
@@ -51,7 +52,7 @@ http://freemusicarchive.org/music/Jono_Bacon/
 
 #### AI Enemies (1/2)
 * Bombs that home in on the player [TODO]
-* Ship Types that target the player [DONE]
+* Some Ship Types directly target the player [DONE]
 
 #### Tile Rendering (1/1)
 * All platforms and background are tiles [DONE]
@@ -60,8 +61,8 @@ http://freemusicarchive.org/music/Jono_Bacon/
 * Ray Casting [DONE]
 
 #### Over the Top Weapons (2/2)
-* Additional weapon types [DONE]
-* Upgrades [DONE]
+* Gun Strength upgrade [DONE]
+* Tri-shot upgrade [DONE]
 
 #### Physics (1/2)
 * Gravity on player [DONE]
