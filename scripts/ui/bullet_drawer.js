@@ -10,6 +10,10 @@ class BulletDrawer {
       asset = this.bulletAsset.heavyShot();
     } else if (bullet.type === 'shotGun') {
       asset = this.bulletAsset.shotGun();
+    } else if (bullet.owner === 'gunShip' || bullet.owner === 'heavyGunShip') {
+      asset = this.bulletAsset.bombShot();
+    } else if (bullet.owner === 'necroCruiser' || bullet.owner === 'crusader') {
+      asset = this.bulletAsset.precisionShot();
     } else if (bullet.owner !== 'player') {
       asset = this.bulletAsset.shipShot();
     }

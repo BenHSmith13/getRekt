@@ -41,7 +41,7 @@ class BulletState {
       } else {
         newBullet.visible = true;
         newBullet.owner = 'player';
-        newBullet.type = currentBulletType
+        newBullet.type = currentBulletType;
         newBullet.height = 30;
         newBullet.width = 15;
         newBullet.direction = this.getMouseAngle(player, mousePosition);
@@ -55,7 +55,7 @@ class BulletState {
     }
   }
 
-  shipBullets(bullets, ships, sounds, timeMod) {
+  shipBullets(bullets, ships, player, sounds, timeMod) {
     _.forEach(ships, (ship) => {
       if (ship.visible) {
         if (ship.reload < 0) {
@@ -63,15 +63,13 @@ class BulletState {
           sounds.playLaser05();
           let newBullet = _.sample(_.filter(bullets, bullet => !bullet.visible));
           if (!newBullet) {
-            //  make a new bullet
             const nameIndex = _.size(bullets);
             newBullet = BulletPool.newBullet(nameIndex);
             bullets[`bullet_${nameIndex}`] = newBullet;
-            // console.log('new Bullet');
           } else {
             newBullet.visible = true;
             if (_.isFunction(ship.bulletDirection)) {
-              newBullet.direction = ship.bulletDirection();
+              newBullet.direction = ship.bulletDirection(ship, player);
             } else {
               newBullet.direction = ship.bulletDirection;
             }
@@ -91,6 +89,6 @@ class BulletState {
   updateBullets(bullets, player, ships, mousePosition, sounds, timeMod, currentBulletType){
     this.moveBullets(bullets, timeMod);
     this.playerBullets(bullets, player, mousePosition, sounds, timeMod, currentBulletType);
-    this.shipBullets(bullets, ships, sounds, timeMod);
+    this.shipBullets(bullets, ships, player, sounds, timeMod);
   }
 }

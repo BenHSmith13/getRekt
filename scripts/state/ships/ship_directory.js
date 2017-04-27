@@ -33,6 +33,10 @@ class ShipDirectory {
     }
   };
 
+  getPlayerAngle(ship, player) {
+    return  Math.atan2((player.yPos + player.height / 2) - (ship.yPos + ship.height / 2), (player.xPos + player.width / 2) - (ship.xPos + ship.width / 2)) * 180 / Math.PI;
+  }
+
   directory() {
     return {
       lightRunner: {
@@ -120,7 +124,7 @@ class ShipDirectory {
         totalHealth: 60,
         speed: 15,
         bulletType: 'normal',  // I need more bullet types
-        bulletDirection: 135,
+        bulletDirection: (ship, player) => this.getPlayerAngle(ship, player),
         reloadTime: 1.5,
       },
       necroCruiser: {
@@ -131,7 +135,7 @@ class ShipDirectory {
         totalHealth: 60,
         speed: 15,
         bulletType: 'normal',  // I need more bullet types
-        bulletDirection: 135,
+        bulletDirection: (ship, player) => this.getPlayerAngle(ship, player),
         reloadTime: 1.5,
       },
       gunShip: {
@@ -152,7 +156,7 @@ class ShipDirectory {
         hp: 100,
         totalHealth: 100,
         speed: 3,
-        bulletType: ['heavy', 'normal'], // TODO: multiple types?
+        bulletType: ['heavy', 'normal'],
         bulletDirection: 90,
         reloadTime: 1.5,
       },
