@@ -38,7 +38,7 @@ class Collision {
         if(pup.type === 'health'){
           if (this.powerCollision(player, pup)) {
             player.hp += 40;
-            player.hp = player.hp > player.totalHealth ? player.totalHealth : player.hp
+            player.hp = player.hp > player.totalHealth ? player.totalHealth : player.hp;
             pup.visible = false;
           }
         }

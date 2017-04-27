@@ -8,8 +8,8 @@ class BulletAssets {
   shipShot() {
     return {
       tile: this.sprites,
-      frameX: 25,
-      frameY: 300,
+      frameX: 20,
+      frameY: 305,
       width: 45,
       height: 75
     }
