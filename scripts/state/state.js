@@ -43,7 +43,7 @@ class State {
       this.currentBulletType
       );
     this.playerState.updatePlayer(data.player, timeMod, data.keys, data.platforms);
-    this.collider.powerUps(data.player, this.powerUps.powerUps, this.particleState, (type) => this.setBulletType(type));
+    this.collider.powerUps(data.player, this.powerUps.powerUps, this.particleState, this.setBulletType);
     this.collider.collisions(
       data.player,
       data.bullets,
